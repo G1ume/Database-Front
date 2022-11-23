@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div>
-      <el-input placeholder="请输入用户名" v-model="name" clearable class="input_style"></el-input>
+      <el-input placeholder="请输入用户名" v-model="name" clearable class="input_style">输入内容为：</el-input>
       <span v-if="error.name" class="err-msg">{{error.name}}</span>
     </div>
     <div>
