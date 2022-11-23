@@ -15,7 +15,9 @@
 </template>
 <script>
 import qs from "qs"
+import {useRouter} from "vue-router"
 
+let router = useRouter()
 export default {
 
   // eslint-disable-next-line vue/multi-word-component-names
@@ -33,40 +35,52 @@ export default {
   methods: {
     login: function () {
       this.$axios({
-        methods:'post',
+        methods: 'post',
         url: '/login/',
         data: qs.stringify({
           uid: this.name,
           upwd: this.pwd
-        })
-      }).then(res=>{
-        switch (res.data.ustate){
-          case 0:{
-            this.$router.push({
-                 name: "Main",
-                 params: {
-                   username: this.name
-                 }
-               });
-            break;
-          }
-          default:{
-            this.$router.push({
-              name: "Login",
-              params: {
-                username: this.name
+        }),
+        timeout: 1000,
+      })
+          .then(res => {
+            switch (res.data.ustate) {
+              case 0: {
+                this.$router.push({
+                  name: "Main",
+                  params: {
+                    username: this.name
+                  }
+                });
+                break;
               }
-            });
-            break;
-          }
-        }
-      } )
-      // this.$router.push({
-      //   name: "Main",
-      //   params: {
-      //     username: this.name
-      //   }
-      // });
+              default: {
+                this.$router.push({
+                  name: "Main",
+                  params: {
+                    username: "shit"
+                  }
+                });
+                break;
+              }
+            }
+          })
+          .catch(err => {
+                console.log(err);
+                /*this.$router.push({
+                  name: "Main", query: {
+                    password: this.pwd,
+                    id: "this is id"
+                  }
+                });*/
+              }
+          )
+// this.$router.push({
+//   name: "Main",
+//   params: {
+//     username: this.name
+//   }
+// });
     }
   }
 }
