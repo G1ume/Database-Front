@@ -3,7 +3,7 @@
     <el-container v-if="$route.meta.keepalive">
       <el-header class="header">
         <keep-alive>
-          <hello-world></hello-world>
+
         </keep-alive>
       </el-header>
       <el-container>
