@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h1>{{ msg }}</h1>
+    <h1>{{ fk }}{{msg}}</h1>
   </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   data () {
     return {
-      msg: 'Welcome to the main vue '
+      msg: 'Welcome to the main vue ',
+      fk:this.$route.toString()
     }
   }
 }
