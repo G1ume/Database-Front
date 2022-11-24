@@ -11,8 +11,10 @@ const app = createApp(App)
 app.use(router)
 app.use(ElementPlus)
 app.provide('$axios', axios)
-
-axios.defaults.baseURL = 'http://localhost:8888'
+const LocalHost = 'http://localhost'
+const wxpIp='http://10.128.50.151'
+const DefaultPort= '8000'
+axios.defaults.baseURL = LocalHost+':'+DefaultPort
 app.config.globalProperties.$axios = axios // 使用globalProperties挂载，util全局挂在也一样
 
 
