@@ -71,12 +71,12 @@ export default {
           })
           .catch(err => {
                 console.log(err);
-                /*this.$router.push({
+                this.$router.push({
                   name: "Main", query: {
                     password: this.pwd,
                     id: "this is id"
                   }
-                });*/
+                });
               }
           )
     },
