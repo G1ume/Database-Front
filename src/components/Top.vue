@@ -6,11 +6,11 @@
     @select="handleSelect"
     router="true"
 >
-  <el-menu-item index="/">主页</el-menu-item>
-  <el-menu-item index="2">商品</el-menu-item>
-  <el-menu-item index="3">分享</el-menu-item>
-  <el-menu-item index="4">消息</el-menu-item>
-  <el-menu-item index="/account/home">个人</el-menu-item>
+  <el-menu-item index="/">主页<el-icon><HomeFilled /></el-icon></el-menu-item>
+  <el-menu-item index="2">商品<el-icon><Shop /></el-icon></el-menu-item>
+  <el-menu-item index="3">分享<el-icon><Share /></el-icon></el-menu-item>
+  <el-menu-item index="4">消息<el-icon><Promotion /></el-icon></el-menu-item>
+  <el-menu-item index="/account/home">个人<el-icon><UserFilled /></el-icon></el-menu-item>
   <el-menu-item index="/Login">登录</el-menu-item>
 <!--<el-sub-menu index="2">-->
 <!--  <template #title>我的工作台</template>-->
