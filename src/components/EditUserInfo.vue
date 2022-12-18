@@ -1,6 +1,7 @@
 <template>
   <el-container>
     <el-aside width="300px">
+      <el-button type="primary" plain @click="goBack"><el-icon><ArrowLeftBold /></el-icon>返回</el-button>
 <!--      拖拽-->
     </el-aside>
 
@@ -13,15 +14,15 @@
       <el-main>
         <div class="userInfo">
           <el-input  placeholder="请输入新昵称" v-model="nun" clearable class="input_style"></el-input>
-          <h6></h6>
+          <h6/>
           <el-button type="primary" @click="changename">修改昵称</el-button>
-          <h6></h6>
+          <h6/>
           <el-input v-model="oldpwd" placeholder="请输入原密码" show-password class="input_style"></el-input>
-          <h6></h6>
+          <h6/>
           <el-input v-model="newpwd" placeholder="请输入新密码" show-password class="input_style"></el-input>
-          <h6></h6>
+          <h6/>
           <el-input v-model="conpwd" placeholder="请确认新密码" show-password class="input_style"></el-input>
-          <h6></h6>
+          <h6/>
           <el-button type="success" @click="changepwd">修改密码</el-button>
         </div>
         <el-divider/>
@@ -49,6 +50,9 @@ export default {
     }
   },
   methods: {
+    goBack(){
+      this.$router.go(-1)
+    },
     changepwd: function () {
       this.$axios({
         methods: 'post',
