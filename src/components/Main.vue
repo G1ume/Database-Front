@@ -32,7 +32,6 @@ export default {
     fn: function () {
       console.log("this.$route")
       console.log(this.$route)
-      this.$router.push({name:'debug'})
       //console.log(this.$route.query.password)
       //console.log(pwd)
     },

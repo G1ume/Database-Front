@@ -2,7 +2,9 @@
   <div id="app">
     <div class="common-layout">
       <el-container v-if="$route.meta.keepalive">
-        <Top/>
+        <el-header>
+          <Top/>
+        </el-header>
       </el-container>
       <router-view></router-view>
     </div>
