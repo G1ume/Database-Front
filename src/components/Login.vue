@@ -11,6 +11,9 @@
     <div>
       <el-button type="primary" @click="login" class="login_style">登录</el-button>
     </div>
+    <div>
+      <p v-show="true"><span>没有账号？<el-link type="primary" @click = "toRegister" >立即注册</el-link></span></p>
+    </div>
   </div>
 </template>
 <script>
@@ -81,6 +84,9 @@ export default {
 //     username: this.name
 //   }
 // });
+    },
+    toRegister:function () {
+      this.$router.push({name:'Register'})
     }
   }
 }

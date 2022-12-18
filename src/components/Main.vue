@@ -3,6 +3,7 @@
     <h1>{{ msg2 }} {{ msg }}</h1>
     <el-button @click="fn">ShowParams</el-button>
     <el-button @click="t">ShowRoute</el-button>
+    <el-button @click="toLogin">login</el-button>
   </div>
 </template>
 
@@ -31,8 +32,12 @@ export default {
     fn: function () {
       console.log("this.$route")
       console.log(this.$route)
+      this.$router.push({name:'debug'})
       //console.log(this.$route.query.password)
       //console.log(pwd)
+    },
+    toLogin:function () {
+      this.$router.push({name:'Login'})
     }
   }
 }
