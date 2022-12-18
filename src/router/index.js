@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Login from '@/components/Login.vue'
 import Main from '@/components/Main.vue'
 import register from "@/components/Register.vue";
+import personalCenter from "@/components/PersonalCenter.vue";
 
 import {createRouter, createWebHistory} from 'vue-router'
 
@@ -28,6 +29,14 @@ const routes = [{
         path: '/Register',
         name: 'Register',
         component: register,
+        meta: {
+            keepalive: false
+        }
+    },
+    {
+        path: '/account/home',
+        name: 'PersonalCenter',
+        component: personalCenter,
         meta: {
             keepalive: false
         }

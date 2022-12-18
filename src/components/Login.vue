@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <h1>请登录</h1>
     <div>
       <el-input placeholder="请输入用户名" v-model="name" clearable class="input_style">输入内容为：</el-input>
       <span v-if="error.name" class="err-msg">{{ error.name }}</span>
@@ -78,12 +79,6 @@ export default {
                 });*/
               }
           )
-// this.$router.push({
-//   name: "Main",
-//   params: {
-//     username: this.name
-//   }
-// });
     },
     toRegister:function () {
       this.$router.push({name:'Register'})
