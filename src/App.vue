@@ -1,36 +1,21 @@
 <template>
   <div id="app">
-    <el-container v-if="$route.meta.keepalive">
-      <el-header class="header">
-        <keep-alive>
-
-        </keep-alive>
-      </el-header>
-      <el-container>
-        <el-aside style="width:200px; height:600px">
-          <keep-alive>
-
-          </keep-alive>
-        </el-aside>
-        <el-container>
-          <el-main>
-            <keep-alive>
-              <router-view></router-view>
-            </keep-alive>
-          </el-main>
-
-        </el-container>
+    <div class="common-layout">
+      <el-container v-if="$route.meta.keepalive">
+        <Top/>
       </el-container>
-    </el-container>
-    <router-view v-if="!$route.meta.keepalive"></router-view>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import Top from "@/components/Top.vue"
 
 export default {
   name: 'App',
   components: {
+    'Top': Top
   }
 }
 </script>
