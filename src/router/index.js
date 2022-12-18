@@ -4,7 +4,7 @@ import Login from '@/components/Login.vue'
 import Main from '@/components/Main.vue'
 import register from "@/components/Register.vue";
 import personalCenter from "@/components/PersonalCenter.vue";
-
+import editUserInfo  from "@/components/EditUserInfo.vue"
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -38,9 +38,17 @@ const routes = [{
         name: 'PersonalCenter',
         component: personalCenter,
         meta: {
-            keepalive: false
+            keepalive: true
         }
     },
+    {
+        path: '/account/edit',
+        name: 'EditUserInfo',
+        component: editUserInfo,
+        meta: {
+            keepalive: true
+        }
+    }
     ]
 
 const router = createRouter({
