@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Top from "@/components/Top.vue"
-import PageHeader from "@/components/PageHeader.vue";
+import Top from "@/components/guide/Top.vue"
+import PageHeader from "@/components/guide/PageHeader.vue";
 
 export default {
   name: 'App',
