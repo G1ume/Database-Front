@@ -20,6 +20,13 @@
       </el-card>
       <h6></h6>
       <div class="">
+        <el-button type="success" plain @click="toUpgood">上架商品</el-button>
+      </div>
+      <div class="">
+        <el-button type="success" plain @click="Upinggood">已上架商品</el-button>
+      </div>
+      <h6></h6>
+      <div class="">
         <el-button type="success" plain @click="toIndent">我的订单</el-button>
       </div>
       <h6></h6>
@@ -67,6 +74,16 @@ export default {
 
   },
   methods: {
+    Upinggood(){
+      this.$router.push({
+        name:"upinggood"
+      })
+    },
+    toUpgood(){
+      this.$router.push({
+        name:"upgood"
+      })
+    },
     toShare() {
       this.$router.push({
         name:"AccountShare"

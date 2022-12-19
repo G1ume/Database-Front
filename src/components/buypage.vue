@@ -34,16 +34,23 @@
 
     </el-main>
     <el-footer>
-      <el-button type="success" round @click="finalbuy">生成订饭</el-button>
+      <el-button type="success" round @click="finalbuy">生成订单</el-button>
     </el-footer>
 
   </el-container>
 
 </template>
+
 <script>
+import { ElMessage } from 'element-plus'
+import qs from "qs";
+
+
+
 export default {
   data() {
     return {
+      uid:"",
       o: {
         cid: '',
         cpid: '',
@@ -57,11 +64,30 @@ export default {
 
     }
   },
-  methods(){
+  methods:{
+    finalbuy:function(){
+      ElMessage('购买成功,即将前往个人中心.')
+      this.$axios({
+        methods: 'post',
+        url: '/?',
+        data: qs.stringify({
+          cid: this.name,
+          cbnum: this.num,
+          uid:this.uid
+        }),
+        timeout: 1000,
+      })
+          .then(
+              this.$router.push({
+                  name:"PersonalCenter"}
+              )
+          )
+    }
 
   },
   created() {
     this.o.cid=this.$route.query.cid
+
   }
 }
 </script>

@@ -7,7 +7,9 @@ import personalCenter from "@/components/PersonalCenter.vue";
 import editUserInfo  from "@/components/EditUserInfo.vue"
 import good from "@/components/Good.vue"
 import singlegood from "@/components/singlegood.vue"
-import goodbuy from "@/components/buypage"
+import goodbuy from "@/components/buypage.vue"
+import upgood from "@/components/upgood.vue";
+import upinggood from "@/components/upinggood.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -74,6 +76,22 @@ const routes = [{
         component: goodbuy,
         meta: {
             keepalive: false
+        }
+    },
+    {
+        path: '/good/up',
+        name: 'upgood',
+        component: upgood,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/good/uping',
+        name: 'upinggood',
+        component: upinggood,
+        meta: {
+            keepalive: true
         }
     }
     ]
