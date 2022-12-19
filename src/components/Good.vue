@@ -28,7 +28,9 @@
           <el-card :body-style="{ padding: '2px' }">
             <el-image
             style="width: 150px ;height: 150px"
-            :src="item.cpi">
+            fit="cover"
+            :src="item.cpi"
+            >
 
             </el-image>
 <!--            <img-->
