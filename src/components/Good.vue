@@ -23,8 +23,8 @@
           <el-col
               v-for="(o, index) in 24"
               :key="o"
-              :span="6"
-              :offset="0"
+              :span="5.5"
+              :offset="1"
           >
             <el-card :body-style="{ padding: '0px' }">
               <img
@@ -82,9 +82,11 @@ export default {
         {label:"长裤",value:5},
         {label:"短裤",value:6},
         {label:"鞋",value:0},
-
+      ],
+      o:[
+        {img:""},
+        {name:""}
       ]
-
     }
   }
   ,
