@@ -4,12 +4,13 @@ import Login from '@/components/Login.vue'
 import Main from '@/components/Main.vue'
 import register from "@/components/Register.vue";
 import personalCenter from "@/components/PersonalCenter.vue";
-import editUserInfo  from "@/components/EditUserInfo.vue"
+import editUserInfo from "@/components/EditUserInfo.vue"
 import good from "@/components/Good.vue"
 import singlegood from "@/components/singlegood.vue"
 import goodbuy from "@/components/buypage.vue"
 import upgood from "@/components/upgood.vue";
 import upinggood from "@/components/upinggood.vue";
+import Shares from "@/components/Shares.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -67,7 +68,7 @@ const routes = [{
         name: 'singleGood',
         component: singlegood,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -93,8 +94,8 @@ const routes = [{
         meta: {
             keepalive: true
         }
-    }
-    ]
+    },
+]
 
 const router = createRouter({
     history: routerHistory,

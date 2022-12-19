@@ -28,8 +28,12 @@
                 <el-upload
                     class="upload-demo"
                     drag
-                    :action="uploadAvatar"
-                    multiple
+                    action="https://api.imgbb.com/1/upload"
+                    show-file-list
+                    accept=".jpg,.png,.jpeg"
+                    :auto-upload="false"
+                    :multiple="false"
+                    :limit="1"
                 >
                   <el-icon class="el-icon--upload">
                     <upload-filled/>
@@ -113,7 +117,6 @@ import {ElMessage} from "element-plus";
 import store from "@/store";
 
 export default {
-
   name: "EditPersonalCenter",
   data() {
     return {

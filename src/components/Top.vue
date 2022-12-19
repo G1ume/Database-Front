@@ -16,7 +16,7 @@
         <Shop/>
       </el-icon>
     </el-menu-item>
-    <el-menu-item index="3">分享
+    <el-menu-item index="/shares">分享
       <el-icon>
         <Share/>
       </el-icon>
