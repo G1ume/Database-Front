@@ -13,13 +13,14 @@
       <el-button type="primary" @click="login" class="login_style">登录</el-button>
     </div>
     <div>
-      <p v-show="true"><span>没有账号？<el-link type="primary" @click = "toRegister" >立即注册</el-link></span></p>
+      <p v-show="true"><span>没有账号？<el-link type="primary" @click="toRegister">立即注册</el-link></span></p>
     </div>
   </div>
 </template>
 <script>
 import qs from "qs"
 import {useRouter} from "vue-router"
+import store from "@/store";
 
 let router = useRouter()
 export default {
@@ -40,7 +41,7 @@ export default {
     login: function () {
       this.$axios({
         methods: 'post',
-        url: '/login/',
+        url: '/login',
         data: qs.stringify({
           uid: this.name,
           upwd: this.pwd
@@ -48,8 +49,10 @@ export default {
         timeout: 1000,
       })
           .then(res => {
-            switch (res.data.ustate) {
-              case 0: {
+            switch (res.data.result) {
+                //用户登录成功
+              case 1: {
+                store.commit("logIn", res.data.uid, res.data.un, res.data.up, false)
                 this.$router.push({
                   name: "Main",
                   params: {
@@ -80,8 +83,8 @@ export default {
               }
           )
     },
-    toRegister:function () {
-      this.$router.push({name:'Register'})
+    toRegister: function () {
+      this.$router.push({name: 'Register'})
     }
   }
 }

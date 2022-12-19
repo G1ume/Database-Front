@@ -8,13 +8,13 @@
     <el-main>
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <h2/>
-        <el-avatar :size="150" :src=defaultSrc fit="cover"/>
+        <el-avatar :size="150" :src="getAvatar()" fit="cover"/>
         <div style="padding: 14px">
-          <span style="font-size: larger">{{ name }}</span>
+          <span style="font-size: larger">{{ getName() }}</span>
           <div/>
-          <span style="font-size: small">uid:{{ userId }}</span>
+          <span style="font-size: small" >uid:{{ getId() }}</span>
           <div>
-            <el-button text @click="toEditUserInfo">修改个人信息</el-button>
+            <el-button text @click="toEditUserInfo" >修改个人信息</el-button>
           </div>
         </div>
       </el-card>
@@ -68,7 +68,9 @@ export default {
   },
   methods: {
     toShare() {
-
+      this.$router.push({
+        name:"AccountShare"
+      })
     },
     toEditUserInfo() {
       this.$router.push({
@@ -76,10 +78,26 @@ export default {
       })
     },
     toIndent() {
-
+      this.$router.push({
+        name:"AccountIndent"
+      })
     },
     toOffLine() {
+      store.commit("logOut")
       this.dialogVisible = false
+      this.$router.push({name:'Main'})
+    },
+    getAvatar(){
+      return store.state.logInfo.user_avatar
+    },
+    getName(){
+      return store.state.logInfo.user_name
+    },
+    getId(){
+      return store.state.logInfo.user_id
+    },
+    online(){
+      return store.state.logInfo.access_token
     }
   }
 }
