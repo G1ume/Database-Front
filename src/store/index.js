@@ -7,6 +7,7 @@ export default createStore({
         // state里面定义了一些要使用的变量
         logInfo: {access_token: false, user_name: '游客', user_id: '',
             user_avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', admin: false},
+        clothList:[]
     },
     mutations: {
         getLogInfo(state) {

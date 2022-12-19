@@ -11,7 +11,7 @@
         <HomeFilled/>
       </el-icon>
     </el-menu-item>
-    <el-menu-item index="/good">商品
+    <el-menu-item index="/goods">商品
       <el-icon>
         <Shop/>
       </el-icon>
