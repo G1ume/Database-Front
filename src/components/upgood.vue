@@ -6,8 +6,13 @@
       </span>
     </el-header>
     <el-main>
+
+
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <h6></h6>
+        <div>
+          商品的图片: <el-input placeholder="请输入商品的图片url" v-model="o.cpi" clearable class="input_style"></el-input>
+        </div>
         <div>
           商品的价格: <el-input placeholder="请输入商品的价格" v-model="o.cpr" clearable class="input_style"></el-input>元
         </div>
@@ -34,7 +39,7 @@
     </el-main>
     <el-footer>
       <div>
-        <el-button @clcik="up">上传商品</el-button>
+        <el-button @click="up">上传商品</el-button>
       </div>
     </el-footer>
   </el-container>
@@ -50,10 +55,17 @@ export default {
   data() {
     return {
       o: {cid: "", cpid: "", cpi: "", cpr: 0, cn: "", cde: "", cnum: 0},
+      dialogOfUpload: false,
+      fileList: [],
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     }
   },
-  method: {
+  methods: {
     up:function () {
+      //确认上传
+      console.log(this.o.cpi)
       this.$axios({
         methods: 'post',
         url: '/?',
@@ -86,12 +98,14 @@ export default {
             }
           })
           .catch(err => {
+            console.log();
                 console.log(err);
                 if (err.code === 'ECONNABORTED') {
                   ElMessage.error('服务器响应超时！')
                 }
               }
           )
+
     }
   ,
     fail:function (){
