@@ -7,6 +7,7 @@ import personalCenter from "@/components/PersonalCenter.vue";
 import editUserInfo  from "@/components/EditUserInfo.vue"
 import good from "@/components/Good.vue"
 import singlegood from "@/components/singlegood.vue"
+import Shares from "@/components/Shares.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -66,7 +67,15 @@ const routes = [{
         meta: {
             keepalive: false
         }
-    }
+    },
+    {
+        path: '/shares',
+        name: 'Share',
+        component: Shares,
+        meta: {
+            keepalive: false
+        }
+    },
     ]
 
 const router = createRouter({
