@@ -4,7 +4,7 @@ import Login from '@/components/Login.vue'
 import Main from '@/components/Main.vue'
 import register from "@/components/Register.vue";
 import personalCenter from "@/components/PersonalCenter.vue";
-import editUserInfo  from "@/components/EditUserInfo.vue"
+import editUserInfo from "@/components/EditUserInfo.vue"
 import good from "@/components/Good.vue"
 import singlegood from "@/components/singlegood.vue"
 import goodbuy from "@/components/buypage.vue"
@@ -70,8 +70,32 @@ const routes = [{
         meta: {
             keepalive: false
         }
-    }
-    ]
+    },
+    {
+        path: '/good/buy',
+        name: 'goodbuy',
+        component: goodbuy,
+        meta: {
+            keepalive: false
+        }
+    },
+    {
+        path: '/good/up',
+        name: 'upgood',
+        component: upgood,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/good/uping',
+        name: 'upinggood',
+        component: upinggood,
+        meta: {
+            keepalive: true
+        }
+    },
+]
 
 const router = createRouter({
     history: routerHistory,
