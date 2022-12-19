@@ -18,14 +18,14 @@
      各个商品信息，类似那20个问题，每个商品card都对应链接
       <el-button @click="query">查询</el-button>
       <el-divider/>
-        <el-row :gutter="10">
+        <el-row >
           <el-col
               v-for="(o, index) in 24"
               :key="o"
               :span="5.5"
               :offset="1"
           >
-            <el-card :body-style="{ padding: '7px' }" >
+            <el-card :body-style="{ padding: '2px' }" >
               <img
                   src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                   class="image"
@@ -33,7 +33,7 @@
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
                 <div class="bottom">
-                  <el-button text class="button">查看详情</el-button>
+                  <el-button text class="button" @click="singleobj(index)">查看详情</el-button>
                 </div>
               </div>
             </el-card>
@@ -99,7 +99,9 @@ export default {
       //console.log(this.$route.query.password)
       //console.log(pwd)
     },
-    toLogin:function () {
+    singleobj:function () {
+
+      //跳转到特定的
       this.$router.push({name:'Login'})
     }
   }
