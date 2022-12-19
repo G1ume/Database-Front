@@ -5,6 +5,7 @@ import Main from '@/components/Main.vue'
 import register from "@/components/Register.vue";
 import personalCenter from "@/components/PersonalCenter.vue";
 import editUserInfo  from "@/components/EditUserInfo.vue"
+import good from "@/components/Good.vue"
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -45,6 +46,14 @@ const routes = [{
         path: '/account/edit',
         name: 'EditUserInfo',
         component: editUserInfo,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/good',
+        name: 'Good',
+        component: good,
         meta: {
             keepalive: true
         }

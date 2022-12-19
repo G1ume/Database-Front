@@ -7,7 +7,7 @@
     router="true"
 >
   <el-menu-item index="/">主页<el-icon><HomeFilled /></el-icon></el-menu-item>
-  <el-menu-item index="2">商品<el-icon><Shop /></el-icon></el-menu-item>
+  <el-menu-item index="/good">商品<el-icon><Shop /></el-icon></el-menu-item>
   <el-menu-item index="3">分享<el-icon><Share /></el-icon></el-menu-item>
   <el-menu-item index="4">消息<el-icon><Promotion /></el-icon></el-menu-item>
   <el-menu-item index="/account/home">个人<el-icon><UserFilled /></el-icon></el-menu-item>
