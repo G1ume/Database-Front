@@ -53,7 +53,7 @@ const routes = [{
         }
     },
     {
-        path: '/good',
+        path: '/goods',
         name: 'Good',
         component: good,
         meta: {
@@ -61,7 +61,7 @@ const routes = [{
         }
     },
     {
-        path: '/good/single',
+        path: '/goods/sample',
         name: 'singleGood',
         component: singlegood,
         meta: {

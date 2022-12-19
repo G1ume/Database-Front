@@ -21,6 +21,7 @@
 import qs from "qs"
 import {useRouter} from "vue-router"
 import store from "@/store";
+import {ElMessage} from "element-plus";
 
 let router = useRouter()
 export default {
@@ -74,12 +75,9 @@ export default {
           })
           .catch(err => {
                 console.log(err);
-                this.$router.push({
-                  name: "Main", query: {
-                    password: this.pwd,
-                    id: "this is id"
-                  }
-                });
+                if (err.code === 'ECONNABORTED') {
+                  ElMessage.error('服务器响应超时！')
+                }
               }
           )
     },
