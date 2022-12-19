@@ -26,13 +26,17 @@
 
 
           <el-card :body-style="{ padding: '2px' }">
+            <el-image
+            style="width: 150px ;height: 150px"
+            :src="item.cpi">
 
-            <img
-                :src="item.cpi"
-                width="50px"
-                class="image"
-             alt=""
-            />
+            </el-image>
+<!--            <img-->
+<!--                :src="item.cpi"-->
+<!--                width="50px"-->
+<!--                class="image"-->
+<!--             alt=""-->
+<!--            />-->
             <div style="padding: 14px" >
               <span>Yummy hamburger</span>
               <div class="bottom">
