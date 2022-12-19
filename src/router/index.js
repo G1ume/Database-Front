@@ -7,6 +7,7 @@ import personalCenter from "@/components/PersonalCenter.vue";
 import editUserInfo  from "@/components/EditUserInfo.vue"
 import good from "@/components/Good.vue"
 import singlegood from "@/components/singlegood.vue"
+import goodbuy from "@/components/buypage"
 import {createRouter, createWebHistory} from 'vue-router'
 
 
@@ -63,6 +64,14 @@ const routes = [{
         path: '/good/single',
         name: 'singleGood',
         component: singlegood,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/good/buy',
+        name: 'goodbuy',
+        component: goodbuy,
         meta: {
             keepalive: false
         }

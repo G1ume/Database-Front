@@ -1,0 +1,67 @@
+<template>
+  <el-container>
+    <el-main>
+      <el-card>
+        <template #header>
+          <div class="card-header">
+
+
+            <el-image
+                style="width: 100px ;height: 100px"
+                :src="o.cpi">
+            </el-image>
+          </div>
+        </template>
+        <!--  衣服名称-->
+        <h2>{{ o.cn }}</h2>
+        <!--  衣服id-->
+        <h3>cid: {{ o.cid }}</h3>
+        <!--  衣服发布者id-->
+        <h3>发布者id: {{ o.cpid }}</h3>
+        <!--  衣服价格-->
+        <el-input-number v-model="num" :min="1" :max="o.cnum" @change="handleChange"/>
+        <h3>总金额: {{ o.cpr*num }} 元</h3>
+        <el-divider>
+
+        </el-divider>
+        <h3> {{ o.cde }} </h3>
+        <!--  <el-image-->
+        <!--      style="width: 100px ;height: 100px"-->
+        <!--      :src="o.cpi">-->
+
+        <!--  </el-image>-->
+      </el-card>
+
+    </el-main>
+    <el-footer>
+      <el-button type="success" round @click="finalbuy">生成订饭</el-button>
+    </el-footer>
+
+  </el-container>
+
+</template>
+<script>
+export default {
+  data() {
+    return {
+      o: {
+        cid: '',
+        cpid: '',
+        cpi: '',
+        cpr: 10,
+        cn: '',
+        cde: '',
+        cnum: 10
+      },
+      num :1
+
+    }
+  },
+  methods(){
+
+  },
+  created() {
+    this.o.cid=this.$route.query.cid
+  }
+}
+</script>
