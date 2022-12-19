@@ -39,7 +39,7 @@ const routes = [{
         name: 'PersonalCenter',
         component: personalCenter,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -47,7 +47,7 @@ const routes = [{
         name: 'EditUserInfo',
         component: editUserInfo,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {

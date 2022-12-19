@@ -1,9 +1,9 @@
 <template>
   <el-container>
     <el-header>
-      <h1>
+      <span style="font-size: 30px;font-weight: bold">
         个人中心
-      </h1>
+      </span>
     </el-header>
     <el-main>
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
@@ -13,7 +13,7 @@
           <span style="font-size: larger">{{ name }}</span>
           <div/>
           <span style="font-size: small">uid:{{ userId }}</span>
-          <div class="bottom">
+          <div>
             <el-button text @click="toEditUserInfo">修改个人信息</el-button>
           </div>
         </div>

@@ -6,6 +6,11 @@
           <Top/>
         </el-header>
       </el-container>
+      <el-container v-if="!$route.meta.keepalive">
+        <el-header>
+          <PageHeader/>
+        </el-header>
+      </el-container>
       <router-view></router-view>
     </div>
   </div>
@@ -13,10 +18,13 @@
 
 <script>
 import Top from "@/components/Top.vue"
+import pageHeader from "@/components/PageHeader.vue";
+import PageHeader from "@/components/PageHeader.vue";
 
 export default {
   name: 'App',
   components: {
+    PageHeader,
     'Top': Top
   }
 }

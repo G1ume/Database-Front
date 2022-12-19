@@ -17,16 +17,15 @@
 
      各个商品信息，类似那20个问题，每个商品card都对应链接
       <el-button @click="query">查询</el-button>
-      <el-divider></el-divider>
-        <el-row>
-
+      <el-divider/>
+        <el-row :gutter="10">
           <el-col
               v-for="(o, index) in 24"
               :key="o"
               :span="6"
               :offset="0"
           >
-            <el-card :body-style="{ padding: '0px' }">
+            <el-card :body-style="{ padding: '7px' }" >
               <img
                   src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                   class="image"
@@ -39,7 +38,6 @@
               </div>
             </el-card>
           </el-col>
-
         </el-row>
     </el-main>
     <el-footer>
