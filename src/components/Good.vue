@@ -13,8 +13,9 @@
             {{ type.label }}
           </el-checkbox-button>
         </el-checkbox-group>
+        <el-button @click="query">查询</el-button>
       </div>
-      <el-button @click="query">查询</el-button>
+
       <el-divider/>
       <el-row type="flex">
         <el-col
@@ -40,7 +41,7 @@
 <!--             alt=""-->
 <!--            />-->
             <div style="padding: 14px" >
-              <span>Yummy hamburger</span>
+              <span>{{item.cn}}</span>
               <div class="bottom">
                 <el-button text class="button" @click="singleobj(index)">查看详情{{index}}</el-button>
               </div>

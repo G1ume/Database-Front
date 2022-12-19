@@ -79,7 +79,12 @@ export default {
     },
     buy:function (){
       //---->下单界面
-
+      this.$router.push({
+        name: "goodbuy",
+        query: {
+          cid:this.o.cid
+        }
+      })
     },
     report:function (){
       //--->举报界面
