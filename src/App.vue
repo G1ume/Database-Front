@@ -18,7 +18,6 @@
 
 <script>
 import Top from "@/components/Top.vue"
-import pageHeader from "@/components/PageHeader.vue";
 import PageHeader from "@/components/PageHeader.vue";
 
 export default {
