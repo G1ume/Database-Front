@@ -17,29 +17,57 @@
 
      各个商品信息，类似那20个问题，每个商品card都对应链接
       <el-button @click="query">查询</el-button>
+      <el-divider></el-divider>
+        <el-row>
+
+          <el-col
+              v-for="(o, index) in 24"
+              :key="o"
+              :span="6"
+              :offset="0"
+          >
+            <el-card :body-style="{ padding: '0px' }">
+              <img
+                  src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                  class="image"
+              />
+              <div style="padding: 14px">
+                <span>Yummy hamburger</span>
+                <div class="bottom">
+                  <el-button text class="button">查看详情</el-button>
+                </div>
+              </div>
+            </el-card>
+          </el-col>
+
+        </el-row>
     </el-main>
     <el-footer>
-      <div>
-        <el-button type="warning" @click="dialogVisible = true">注销</el-button>
-        <el-dialog
-            v-model="dialogVisible"
-            title="请注意！"
-            width="25%">
-          <span style="font-size: 15px">确定要注销吗？</span>
-          <template #footer>
-              <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">取消</el-button>
-                <el-button type="primary" @click="toOffLine">
-                  确认
-                </el-button>
-              </span>
-          </template>
-        </el-dialog>
-      </div>
+      //翻页部分
     </el-footer>
   </el-container>
 </template>
+<style>
 
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  padding: 0;
+  min-height: auto;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+</style>
 <script>
 export default {
   data() {
