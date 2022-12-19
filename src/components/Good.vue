@@ -6,7 +6,7 @@
       </h1>
     </el-header>
     <el-main>
-      一个查询
+
       <div>
         <el-checkbox-group v-model="checkTypeList" size="large">
           <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
@@ -40,7 +40,7 @@
             <div style="padding: 14px" >
               <span>Yummy hamburger</span>
               <div class="bottom">
-                <el-button text class="button" @click="singleobj(index)">查看详情</el-button>
+                <el-button text class="button" @click="singleobj(index)">查看详情{{index}}</el-button>
               </div>
             </div>
           </el-card>
@@ -69,10 +69,10 @@
   min-height: auto;
 }
 
-.image {
-  width: 100%;
-  display: block;
-}
+/*.image {*/
+/*  width: 100%;*/
+/*  display: block;*/
+/*}*/
 </style>
 <script>
 import qs from "qs";
@@ -169,21 +169,23 @@ export default {
       //console.log(pwd)
     },
     singleobj: function (index) {
+      console.log("single begin")
       console.log(typeof index, index)
       //跳转到特定的
       // this.$router.push({name:'Login'})
 
-      this.o = clothe24.at(index)
+      this.o = this.clothe24.at(index)
       this.$router.push(
           {
-            name: "singlegood", query: {
-              cid: o.cid,
-              cpid: o.cpid,
-              cpi: o.cpi,
-              cpr: o.cpr,
-              cn: o.cn,
-              cde: o.cde,
-              cnum: o.cnum
+            name: "singleGood",
+            query: {
+              cid: this.o.cid,
+              cpid:this. o.cpid,
+              cpi: this.o.cpi,
+              cpr: this.o.cpr,
+              cn: this.o.cn,
+              cde: this.o.cde,
+              cnum: this.o.cnum
             }
           }
       )
