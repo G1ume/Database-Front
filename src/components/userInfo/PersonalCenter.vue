@@ -75,7 +75,7 @@ export default {
   name: "PersonalCenter",
   data() {
     return {
-      isuser:store.state.logInfo.admin,
+      isuser:!store.state.logInfo.admin,
       name: '用户昵称',
       userId: 0,
       defaultSrc: "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",

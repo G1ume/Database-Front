@@ -28,7 +28,7 @@
         placement="bottom"
         :disabled="!offline()"
     >
-      <el-menu-item index="4" :disabled="offline()">消息
+      <el-menu-item index="/message" :disabled="offline()">消息
         <el-icon>
           <Promotion/>
         </el-icon>
