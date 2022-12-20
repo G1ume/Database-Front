@@ -1,17 +1,35 @@
-const { defineConfig } = require('@vue/cli-service')
+const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
-  transpileDependencies: true,
-  lintOnSave: false,
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://smms.app",
-        changeOrigin: true,
-        secure: false,
-        headers: {
-          Referer: "https://smms.app",
-        },
-      },
+    devServer: {
+        port:8081,
+        proxy: {
+            '/api': {
+                target: 'https://sm.ms/api/v2/', //这里填入你要请求的接口的前缀
+                ws: true, //代理websocked
+                changeOrigin: true, //虚拟的站点需要更换origin
+                secure: true, //是否https接口，我用的http但是我变成false他打包后会报错，所以先true
+                pathRewrite: {
+                    '^/api': 'https://'     //重写路径
+                }
+            }
+        }
     },
-  },
+    transpileDependencies: true,
+    lintOnSave: false,
 })
+//     defineConfig({
+//
+//     devServer: {
+//         proxy: {
+//             '/api': {
+//                 target: 'https://sm.ms/api/v2/', //这里填入你要请求的接口的前缀
+//                 ws: true, //代理websocked
+//                 changeOrigin: true, //虚拟的站点需要更换origin
+//                 secure: true, //是否https接口，我用的http但是我变成false他打包后会报错，所以先true
+//                 pathRewrite: {
+//                     '^/api': ''     //重写路径
+//                 }
+//             }
+//         }
+//     }
+// })

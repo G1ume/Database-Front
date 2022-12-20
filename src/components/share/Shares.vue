@@ -9,7 +9,7 @@
 
       <div>
         <el-checkbox-group v-model="checkTypeList" size="large">
-          <el-checkbox-button v-for="(type,index) in laobelList" :key="index" :label="type.value">
+          <el-checkbox-button v-for="(type,index) in labelList" :key="index" :label="type.value">
             {{ type.label }}
           </el-checkbox-button>
         </el-checkbox-group>
@@ -70,7 +70,8 @@ import {ElMessage} from "element-plus";
 export default {
   data() {
     return {
-      laobelList: store.state.clothTypeList,
+      labelList: store.state.clothTypeList,
+      checkTypeList:[],
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,

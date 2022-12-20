@@ -47,17 +47,19 @@ import axios from "axios";
 
 const upload = (file) => {
   const formData = new FormData();
-   formData.append("smfile", file.file)
-  console.log(formData.get('image'))
-  axios.post("https://smms.app/v2/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": "xxx",
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      }).catch(err => {
+  //formData.append("smfile", file.file)
+  //console.log(formData.get('smfile'))
+  axios({
+    method: 'post',
+    url: 'https://api.imgbb.com/1/upload',
+    params: {
+      key: "49ef2388d437cb4308b8a2668ebae97f",
+      image : file.file,
+    }
+  }).then((res) => {
+    console.log(res)
+    console.log(res.data);
+  }).catch(err => {
     console.log(err)
   })
 }

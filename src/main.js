@@ -21,6 +21,11 @@ const LocalHost = 'http://localhost'
 const self_net='http://192.168.3.62'
 const DefaultPort= '8000'
 axios.defaults.baseURL = LocalHost+':'+DefaultPort
+
+// axios.defaults.headers.post['Authorization'] = 'zA9LiKaoxc7WQFnsly3jGtmXJqurDSd4';
+// axios.defaults.headers.post['Content-Type'] = 'nimasile';
+// axios.defaults.headers.post['Accept'] = 'multipart/form-data';
+
 app.config.globalProperties.$axios = axios // 使用globalProperties挂载，util全局挂在也一样
 
 
