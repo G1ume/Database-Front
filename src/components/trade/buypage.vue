@@ -71,7 +71,7 @@ export default {
         method: 'post',
         url: '/regist_order',
         data: qs.stringify({
-          cid: this.name,
+          cid: this.o.cid,
           cbnum: this.num,
           uid: store.state.logInfo.user_id
         }),
