@@ -76,15 +76,15 @@ export default {
       timeout: 1000,
     })
         .then(res => {
-          for (let i = 0; i < res.data.list.length; i++) {
+          for (let i = 0; i < res.data.result.length; i++) {
             this.messagelist.push({
-              uid: res.data.list.at(i).uid,
-              oid: res.data.list.at(i).oid,
-              mid: res.data.list.at(i).mid,
-              mtime: res.data.list.at(i).mtime,
-              mcontent: res.data.list.at(i).mcontent,
-              mst: res.data.list.at(i).mst,
-              sid: res.data.list.at(i).sid
+              uid: res.data.result[i].uid,
+              oid:  res.data.result[i].oid,
+              mid:  res.data.result[i].mid,
+              mtime:  res.data.result[i].mtime,
+              mcontent:  res.data.result[i].mcontent,
+              mst:  res.data.result[i].mst,
+              sid:  res.data.result[i].sid
               // spic: res.data.list.at(i).spic,
               // ppic: res.data.list.at(i).ppic
             })

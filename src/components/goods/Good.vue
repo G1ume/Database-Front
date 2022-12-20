@@ -121,15 +121,15 @@ export default {
         timeout: 1000,
       })
           .then(res => {
-            for (let i = 0; i < res.data.list.length; i++) {
+            for (let i = 0; i < res.data.result.length; i++) {
               this.clothe24.push({
-                cid: res.data.list[i].cid,
-                cpid: res.data.list[i].cpid,
-                cpi: res.data.list[i].cpi,
-                cpr: res.data.list[i].cpr,
-                cn: res.data.list[i].cn,
-                cde: res.data.list[i].cde,
-                cnum: res.data.list[i].cnum
+                cid: res.data.result[i].cid,
+                cpid: res.data.result[i].cpid,
+                cpi: res.data.result[i].cpi,
+                cpr: res.data.result[i].cpr,
+                cn: res.data.result[i].cn,
+                cde: res.data.result[i].cde,
+                cnum: res.data.result[i].cnum
               })
             }
           }).catch(err=>{

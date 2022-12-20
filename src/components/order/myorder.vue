@@ -82,15 +82,15 @@ export default {
         for (let i = 0; i < res.data.result.length; i++) {
           this.myOrder.push(
               {
-                "did": res.data.result.did,
-                "sid": res.data.result.dsid,
-                "bid": res.data.result.dbid,
-                "cid": res.data.result.dcid,
-                "pri": res.data.result.dpri,
-                "time": res.data.result.dti,
-                "status": res.data.result.dst,
-                "num": res.data.result.dnum,
-                "pic": res.data.result.pic
+                "did": res.data.result[i].did,
+                "sid": res.data.result[i].dsid,
+                "bid": res.data.result[i].dbid,
+                "cid": res.data.result[i].dcid,
+                "pri": res.data.result[i].dpri,
+                "time": res.data.result[i].dti,
+                "status": res.data.result[i].dst,
+                "num": res.data.result[i].dnum,
+                "pic": res.data.result[i].pic
               })
         }
         console.log("获取订单列表成功!")
