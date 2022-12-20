@@ -113,6 +113,14 @@ const routes = [{
             keepalive: true
         }
     },
+    {
+        path: '/shares',
+        name: 'shares',
+        component: Shares,
+        meta: {
+            keepalive: true
+        }
+    },
 ]
 
 const router = createRouter({

@@ -18,7 +18,7 @@
       <el-divider/>
       <el-row type="flex">
         <el-col
-            v-for="(item, index) in clothe24"
+            v-for="index in pageElemNum"
             :key="index"
             :span="5.5"
             :offset="1"
@@ -29,14 +29,14 @@
             <el-image
                 style="width: 150px ;height: 150px"
                 fit="cover"
-                :src="item.cpi"
+                :src="shareList[index-1+headIndex].spi"
             >
 
             </el-image>
-            <div style="padding: 14px" >
+            <div style="padding: 14px">
               <span>Yummy hamburger</span>
               <div class="bottom">
-                <el-button text class="button" @click="singleobj(index)">查看详情{{index}}</el-button>
+                <el-button text class="button" @click="singleobj(index)">查看详情{{ index }}</el-button>
               </div>
             </div>
           </el-card>
@@ -45,28 +45,78 @@
       </el-row>
     </el-main>
     <el-footer>
-      //翻页部分
+      <div class="pageChange">
+        <el-pagination
+            v-model:current-page="pageNum"
+            layout="prev, pager, next"
+            :hide-on-single-page=true
+            :total=clothe24.length
+            :page-size=pageSize
+            @current-change="changePage"
+        />
+      </div>
     </el-footer>
   </el-container>
 </template>
 
 <script>
+import store from "@/store";
+import qs from "qs";
+import {ElMessage} from "element-plus";
+
 export default {
-  data(){
-    return{
-      laobelList: [
-        {label: "上衣", value: 1},
-        {label: "长袖", value: 2},
-        {label: "短袖", value: 3},
-        {label: "下装", value: 4},
-        {label: "长裤", value: 5},
-        {label: "短裤", value: 6},
-        {label: "鞋", value: 0},
-      ]
+  data() {
+    return {
+      laobelList: store.state.clothTypeList,
+      shareList: [],
+      pageNum: 0,
+      pageSize: 2,
+      pageElemNum: 0,
+      headIndex: 0,
     }
   },
-  methods:{
-
+  methods: {
+    async query() {
+      let sco_list = []
+      for (let index = 0; index < this.checkTypeList.length; index++) {
+        let item = this.checkTypeList[index];
+        sco_list.push(item)
+        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+      }
+      let scco1 = sco_list.join()
+      this.$axios({
+        method: 'post',
+        url: '/find_cco_cloths',
+        data: qs.stringify({
+          sco: scco1,
+          uid: store.state.logInfo.user_id
+        }),
+        timeout: 1000,
+      })
+          .then(res => {
+            for (let i = 0; i < res.data.list.length; i++) {
+              this.shareList.push({
+                sco: res.data.list[i].sco,
+                sid: res.data.list[i].sid,
+                spi: res.data.list[i].spi,
+                sst: res.data.list[i].sst,
+                scid: res.data.list[i].scid,
+                she: res.data.list[i].she,
+                sde: res.data.list[i].sde,
+                sti: res.data.list[i].sti,
+                spid: res.data.list[i].spid
+              })
+            }
+          }).catch(err => {
+        console.log(err)
+        ElMessage.error("获取分享列表失败")
+      })
+    },
+    changePage(val) {
+      this.pageNum = val
+      this.headIndex = (this.pageNum - 1) * this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+    },
   }
 }
 </script>
