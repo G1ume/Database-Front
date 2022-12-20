@@ -2,14 +2,17 @@
 <el-button type="primary" @click="login">login
 
 </el-button>
+  <upload-avatar/>
 </template>
 
 <script>
 import store from "@/store";
-
+import uploadAvatar from "@/components/userInfo/uploadAvatar.vue";
+import UploadAvatar from "@/components/userInfo/uploadAvatar.vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "debug",
+  components: {UploadAvatar},
   setup(){
 
   },

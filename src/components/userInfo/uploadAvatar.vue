@@ -1,7 +1,7 @@
 <template>
   <el-upload
       class="upload-demo"
-      action="https://api.imgbb.com/1/upload"
+      action=""
       show-file-list
       accept=".jpg,.png,.jpeg"
       on-preview=""
@@ -9,8 +9,11 @@
       :auto-upload="false"
       :multiple="false"
       :limit="1"
+      :http-request="upload"
   >
-    <el-icon><Plus /></el-icon>
+    <el-icon>
+      <Plus/>
+    </el-icon>
 
     <template #file="{file}">
       <img class="el-upload-list__item-thumbnail" :src="file.url" alt=""/>
@@ -28,12 +31,41 @@
       确认
     </el-button>
   </span>
+  <el-upload
+      action=""
+      class="alignContainer"
+      :http-request="upload"
+      :show-file-list="false"
+      :before-upload="beforeAvatarUpload"
+  >
+    <div class="avatar-update">修改头像</div>
+  </el-upload>
 
 </template>
+<script setup>
+import axios from "axios";
 
+const upload = (file) => {
+  const formData = new FormData();
+  formData.append('key', "49ef2388d437cb4308b8a2668ebae97f")
+  formData.append('image', file.file)
+  formData.append('name', "ce ni ma")
+  console.log(formData)
+  axios({
+    method: 'post',
+    url: "https://api.imgbb.com/1/upload",
+  }, {timeout: 2000}).then(res => {
+    console.log(res.data)
+  }).catch(err => {
+    console.log(err)
+  })
+}
+</script>
 <script>
 export default {
-  name: "uploadAvatar"
+  name: "uploadAvatar",
+
+  methods: {}
 }
 </script>
 
