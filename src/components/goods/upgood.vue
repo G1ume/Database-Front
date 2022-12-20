@@ -76,6 +76,7 @@ export default {
       //确认上传
       let ccolist=[]
       for (let index = 0; index < this.checkTypeList.length; index++) {
+
         let item = this.checkTypeList[index];
         console.log("item", item);
         ccolist.push(item)
