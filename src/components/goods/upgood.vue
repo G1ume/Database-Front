@@ -33,6 +33,12 @@
           商品的数量: <el-input placeholder="请输入商品的数量" v-model="o.cnum" clearable class="input_style"></el-input>件
         </div>
 
+        <el-checkbox-group v-model="checkTypeList" size="large">
+          <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
+            {{ type.label }}
+          </el-checkbox-button>
+        </el-checkbox-group>
+
       </el-card>
       <h6></h6>
       <h6></h6>
@@ -59,12 +65,33 @@ export default {
       fileList: [],
       headers: {
         'Content-Type': 'multipart/form-data'
-      }
+      },
+      checkTypeList: [],
+      checkboxGroup1: 0,
+      clothe1: [
+        {label: "上衣", value: 1},
+        {label: "长袖", value: 2},
+        {label: "短袖", value: 3},
+        {label: "下装", value: 4},
+        {label: "长裤", value: 5},
+        {label: "短裤", value: 6},
+        {label: "鞋", value: 0},
+      ]
     }
   },
   methods: {
     up:function () {
       //确认上传
+      let ccolist=[]
+      for (let index = 0; index < this.checkTypeList.length; index++) {
+        let item = this.checkTypeList[index];
+        console.log("item", item);
+        ccolist.push(item)
+        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+      }
+      let cco1=ccolist.join()
+      console.log("cco1",cco1)
+
       console.log(this.o.cpi)
       this.$axios({
         methods: 'post',
@@ -75,6 +102,7 @@ export default {
           cpi:this.o.cpi,
           cpr:this.o.cn,
           cn:this.o.cde,
+          cco: cco1,
           cnum:this.o.cnum
         }),
         timeout: 1000,
