@@ -85,7 +85,7 @@ export default {
               let o= {}
               o.cid = res.data.result[i].cid
               o.cpid = res.data.result[i].cpid
-              o.cpic = res.data.result[i].cpic
+              o.cpi = res.data.result[i].cpi
               o.cpr = res.data.result[i].cpr
               o.cn = res.data.result[i].cn
               o.cde = res.data.result[i].cde
