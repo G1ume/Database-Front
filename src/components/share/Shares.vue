@@ -77,7 +77,6 @@ export default {
       pageSize: store.state.pagecfg.pagesize,
       pageElemNum: 3,
       headIndex: 0,
-      checkTypeList:[]
     }
   },
   created() {

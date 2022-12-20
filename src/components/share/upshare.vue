@@ -84,8 +84,6 @@ export default {
       let cco1 = ccolist.join()
       console.log("cco1", cco1)
       let aData = new Date();
-      let dateValue = aData.getFullYear() + "-" + (aData.getMonth() + 1) + "-" + aData.getDate();
-      console.log(dateValue)
       console.log(this.s.spi)
       this.$axios({
         method: 'post',
@@ -96,7 +94,7 @@ export default {
           scid: this.s.scid,
           she: this.s.she,
           sde: this.s.sde,
-          sti: dateValue,
+          sti: new Date(),
           spid: store.state.logInfo.user_id
         }),
         timeout: 1000,
