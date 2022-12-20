@@ -147,6 +147,7 @@ export default {
         url: '/report_share',
         data: qs.stringify({
           sid: this.shareList[index - 1 + this.headIndex].sid,
+          uid: store.state.logInfo.user_id
         }),
         timeout: 1000,
       })

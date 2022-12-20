@@ -96,17 +96,7 @@ export default {
 
           }).catch(err => {
             console.log(err)
-        // this.clothe24=[]
-        // for (let i = 0; i < this.clist.length; i++) {
-        //   let o= {}
-        //   o.cpi = this.clist.at(i)
-        //   o.cid = i
-        //   o.cpr =i*100
-        //   o.cn = "第"+i+"件上架"
-        //   o.cde = "第"+i+"件上架"
-        //   o.cnum = i*10
-        //   this.clothe24.push(o)
-        // }
+
         }
       )
     }
