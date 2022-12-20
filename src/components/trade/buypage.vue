@@ -44,6 +44,7 @@
 <script>
 import { ElMessage } from 'element-plus'
 import qs from "qs";
+import store from "@/store";
 
 
 
@@ -73,7 +74,7 @@ export default {
         data: qs.stringify({
           cid: this.name,
           cbnum: this.num,
-          uid:this.uid
+          uid:store.state.logInfo.user_id
         }),
         timeout: 1000,
       })
