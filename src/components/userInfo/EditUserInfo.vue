@@ -116,7 +116,7 @@ export default {
     changePwd() {
       this.pwdLoading = true
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/account/edit/pwd',
         data: qs.stringify({
           uid: store.state.logInfo.user_id,
@@ -130,11 +130,15 @@ export default {
             this.pwdLoading = false
             switch (res.data.result) {
               case 0: {
-                this.$router.push({});
+                ElMessage.error(res.data.message)
+                break;
+              }
+              case 1: {
+                ElMessage.success("修改密码成功！")
                 break;
               }
               default: {
-
+                ElMessage.error("密码修改失败！")
                 break;
               }
             }
