@@ -73,8 +73,10 @@ export default {
       this.$axios(
           {
             method: 'post',
-            url: '',
-            data: qs.stringify({})
+            url: '/find_all_order',
+            data: qs.stringify({
+              uid:store.state.logInfo.user_id
+            })
           }
       ).then(res => {
         switch (res.data.result) {

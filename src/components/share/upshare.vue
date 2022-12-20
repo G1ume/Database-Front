@@ -89,7 +89,7 @@ export default {
       console.log(this.s.spi)
       this.$axios({
         method: 'post',
-        url: '/?',
+        url: '/regist_share',
         data: qs.stringify({
           sco: this.s.sco,
           spi: this.s.spi,

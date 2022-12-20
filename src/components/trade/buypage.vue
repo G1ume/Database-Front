@@ -69,7 +69,7 @@ export default {
       ElMessage('购买成功,即将前往个人中心.')
       this.$axios({
         method: 'post',
-        url: '/?',
+        url: '/regist_order',
         data: qs.stringify({
           cid: this.name,
           cbnum: this.num,
