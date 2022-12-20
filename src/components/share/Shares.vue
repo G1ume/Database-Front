@@ -110,7 +110,7 @@ export default {
       let scco1 = sco_list.join("")
       this.$axios({
         method: 'post',
-        url: '/find_cco_cloths',
+        url: '/find_sco_cloths',
         data: qs.stringify({
           sco: scco1,
           uid: store.state.logInfo.user_id
