@@ -12,6 +12,8 @@ import upgood from "@/components/goods/upgood.vue";
 import upinggood from "@/components/goods/upinggood.vue";
 import Shares from "@/components/share/Shares.vue";
 import upshare from "@/components/share/upshare.vue";
+import myorder from "@/components/order/myorder.vue";
+import message from "@/components/message/message.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import debug from "@/debug.vue";
 
@@ -113,6 +115,22 @@ const routes = [{
             keepalive: true
         }
     },
+    {
+        path: '/myorder',
+        name: 'myorder',
+        component: myorder,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/message',
+        name: 'message',
+        component: message,
+        meta: {
+            keepalive: true
+        }
+    }
 ]
 
 const router = createRouter({

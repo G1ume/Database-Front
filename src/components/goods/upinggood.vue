@@ -26,7 +26,6 @@
                 <span>描述:{{ item.cde }}</span>
                 <span>剩余{{ item.cnum }}件</span>
                 <div class="bottom">
-
                 </div>
               </div>
           </el-card>

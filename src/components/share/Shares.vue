@@ -34,7 +34,7 @@
 
             </el-image>
             <div style="padding: 14px" >
-              <span>Yummy hamburger</span>
+              <span>分享</span>
               <div class="bottom">
                 <el-button text class="button" @click="singleobj(index)">查看详情{{index}}</el-button>
               </div>
