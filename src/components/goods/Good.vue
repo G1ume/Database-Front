@@ -135,19 +135,17 @@ export default {
           .then(res => {
             this.clothe24=[]
             for (let i = 0; i < res.data.list.length; i++) {
-              this.o.cid = res.data.list[i].cid
-              this.o.cpid = res.data.list[i].cpid
-              this.o.cpr = res.data.list[i].cpr
-              this.o.cn = res.data.list[i].cn
-              this.o.cde = res.data.list[i].cde
-              this.o.cnum = res.data.list[i].cnum
-              this.clothe24.add(this.o)
+              let o1={}
+              o1.cid = res.data.list[i].cid
+              o1.cpid = res.data.list[i].cpid
+              o1.cpr = res.data.list[i].cpr
+              o1.cn = res.data.list[i].cn
+              o1.cde = res.data.list[i].cde
+              o1.cnum = res.data.list[i].cnum
+              //可能需要用list.at(i)
+              this.clothe24.add(o1)
             }
             //debug
-            for (let i = 0; i < 2; i++) {
-              this.o.cpr = i
-              this.clothe24.push(this.o)
-            }
           })
           .catch(err => {
                 console.log(err);
