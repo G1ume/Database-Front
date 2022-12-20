@@ -17,12 +17,12 @@
               />
             </template>
           </el-table-column>
-          <el-table-column prop="dcid" label="衣服id">
+          <el-table-column prop="cid" label="衣服id">
           </el-table-column>
-          <el-table-column prop="dpri" label="订单总价">
+          <el-table-column prop="pri" label="订单总价">
 
           </el-table-column>
-          <el-table-column prop="dti" label="创建时间">
+          <el-table-column prop="time" label="创建时间">
 
           </el-table-column>
           <el-table-column prop="" label="操作">
@@ -58,12 +58,12 @@ export default {
       for (let i = 0; i < 10; i++) {
         this.myOrder.push({
           did: i,
-          dsid: "卖家id" + i,
-          dcid: "衣服id" + i,
-          dpri: i * 100.3,
-          dst: 0,
-          dti: new Date(),
-          dnum: i * 30,
+          sid: "卖家id" + i,
+          cid: "衣服id" + i,
+          pri: i * 100.3,
+          status: 0,
+          time: new Date(),
+          num: i * 30,
           pic: store.state.testClothList[i],
         })
       }
@@ -82,15 +82,15 @@ export default {
         for (let i = 0; i < res.data.result.length; i++) {
           this.myOrder.push(
               {
-                "did": res.data.result[i].did,
-                "sid": res.data.result[i].sid,
-                "bid": res.data.result[i].bid,
-                "cid": res.data.result[i].cid,
-                "pri": res.data.result[i].pri,
-                "time": res.data.result[i].time,
-                "status": res.data.result[i].status,
-                "num": res.data.result[i].num,
-                "pic": res.data.result[i].pic
+                did: res.data.result[i].did,
+                sid: res.data.result[i].sid,
+                bid: res.data.result[i].bid,
+                cid: res.data.result[i].cid,
+                pri: res.data.result[i].pri,
+                time: res.data.result[i].time,
+                status: res.data.result[i].status,
+                num: res.data.result[i].num,
+                pic: res.data.result[i].pic
               })
         }
         console.log("获取订单列表成功!")
@@ -115,7 +115,7 @@ export default {
   },
   created() {
     this.getOrder()
-    this.demo()
+    //this.demo()
   }
 }
 </script>
