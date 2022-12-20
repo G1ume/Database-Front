@@ -35,20 +35,7 @@ export default {
     },
   },
   created() {
-    this.$axios({
-      method: 'post',
-      url: '',
-      data: qs.stringify({
-        did: this.$route.query.orderId
-      })
-    }, {timeout: 1000}).then(res => {
-      if (res.data.result){
-        this.order=res.data.order
-      }
-    }).catch(err=>{
-      console.log(err)
-      ElMessage.error("获取订单失败！")
-    })
+    this.order=this.$route.query.order
   }
 }
 </script>

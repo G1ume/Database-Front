@@ -69,22 +69,31 @@ export default {
       }
     },
     async getOrder() {
-      this.myOrder = []
       this.$axios(
           {
             method: 'post',
             url: '/find_all_order',
             data: qs.stringify({
-              uid:store.state.logInfo.user_id
+              uid: store.state.logInfo.user_id
             })
           }
       ).then(res => {
-        switch (res.data.result) {
-          case 0:
-            break;
-          default:
-            break;
+        this.myOrder = []
+        for (let i = 0; i < res.data.result.length; i++) {
+          this.myOrder.push(
+              {
+                "did": res.data.result.did,
+                "sid": res.data.result.dsid,
+                "bid": res.data.result.dbid,
+                "cid": res.data.result.dcid,
+                "pri": res.data.result.dpri,
+                "time": res.data.result.dti,
+                "status": res.data.result.dst,
+                "num": res.data.result.dnum,
+                "pic": res.data.result.pic
+              })
         }
+        console.log("获取订单列表成功!")
       }).catch(err => {
         console.log(err)
         ElMessage.error("获取订单列表失败！")
@@ -99,7 +108,7 @@ export default {
       this.$router.push({
         name: 'sampleOrder',
         query: {
-          orderId: this.myOrder[index]
+          order: this.myOrder[index]
         }
       })
     }
