@@ -82,7 +82,7 @@ export default {
         ccolist.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      let cco1=ccolist.join()
+      let cco1=ccolist.join("")
       console.log("cco1",cco1)
 
       console.log(this.o.cpi)
@@ -93,9 +93,10 @@ export default {
           cid: this.o.cid,
           cpid: this.o.cpid,
           cpi:this.o.cpi,
-          cpr:this.o.cn,
-          cn:this.o.cde,
+          cpr:this.o.cpr,
+          cn:this.o.cn,
           cco: cco1,
+          cde:this.o.cde,
           cnum:this.o.cnum
         }),
         timeout: 1000,

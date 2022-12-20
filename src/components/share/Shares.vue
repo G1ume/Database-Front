@@ -106,7 +106,7 @@ export default {
         sco_list.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      let scco1 = sco_list.join()
+      let scco1 = sco_list.join("")
       this.$axios({
         method: 'post',
         url: '/find_cco_cloths',
