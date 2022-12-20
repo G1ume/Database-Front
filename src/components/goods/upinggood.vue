@@ -73,7 +73,7 @@ export default {
     query: function () {
       this.$axios({
         method: 'post',
-        url: '/querydingdan/',
+        url: '/find_all_cloths',
         data: qs.stringify({
           cpid:store.state.logInfo.user_id,
         }),

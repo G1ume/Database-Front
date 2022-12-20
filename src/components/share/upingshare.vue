@@ -22,7 +22,8 @@
             <div style="padding: 14px">
               <span>Share Body {{ shareList[index - 1 + headIndex]}}</span>
               <div class="bottom">
-
+                <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
+                <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
               </div>
             </div>
           </el-card>
@@ -57,6 +58,7 @@ export default {
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
+      isadmin:store.state.logInfo.admin,
       pageElemNum: 0,
       headIndex: 0,
     }
@@ -65,7 +67,7 @@ export default {
     async query() {
       this.$axios({
         method: 'post',
-        url: '/find_cco_cloths',
+        url: '/find_my_shares',
         data: qs.stringify({
           uid: store.state.logInfo.user_id
         }),
@@ -95,6 +97,32 @@ export default {
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
     },
+    reject(index){
+      this.$axios({
+        method: 'post',
+        url: '/reject',
+        data: qs.stringify({
+          sid: shareList[index - 1 + headIndex].sid
+        }),
+        timeout: 1000,
+      }).catch(err => {
+        console.log(err)
+        ElMessage.error("驳回处理失败")
+      })
+    },
+    agree (index){
+      this.$axios({
+        method: 'post',
+        url: '/agree',
+        data: qs.stringify({
+          sid: shareList[index - 1 + headIndex].sid
+        }),
+        timeout: 1000,
+      }).catch(err => {
+        console.log(err)
+        ElMessage.error("接受处理失败")
+      })
+    }
   }
 }
 </script>
