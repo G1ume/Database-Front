@@ -91,7 +91,7 @@ export default {
         url: '/regist_clothing',
         data: qs.stringify({
           cid: this.o.cid,
-          cpid: this.o.cpid,
+          cpid: store.state.logInfo.user_id,
           cpi:this.o.cpi,
           cpr:this.o.cpr,
           cn:this.o.cn,
