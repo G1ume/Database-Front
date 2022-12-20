@@ -7,7 +7,16 @@ export default createStore({
         // state里面定义了一些要使用的变量
         logInfo: {access_token: false, user_name: '游客', user_id: '',
             user_avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', admin: false},
-        clothList:[]
+        clothList:[],
+        clothTypeList:[
+            {label: "上衣", value: 1},
+            {label: "长袖", value: 2},
+            {label: "短袖", value: 3},
+            {label: "下装", value: 4},
+            {label: "长裤", value: 5},
+            {label: "短裤", value: 6},
+            {label: "鞋", value: 0},
+        ],
     },
     mutations: {
         getLogInfo(state) {

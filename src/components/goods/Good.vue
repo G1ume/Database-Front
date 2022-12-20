@@ -19,18 +19,16 @@
       <el-divider/>
       <el-row type="flex">
         <el-col
-            v-for="(item, index) in clothe24"
+            v-for="index in pageElemNum"
             :key="index"
             :span="5.5"
             :offset="1"
         >
-
-
           <el-card :body-style="{ padding: '2px' }">
             <el-image
             style="width: 150px ;height: 150px"
             fit="cover"
-            :src="item.cpi"
+            :src="clothe24[index+headIndex-1].cpi"
             >
 
             </el-image>
@@ -41,7 +39,7 @@
 <!--             alt=""-->
 <!--            />-->
             <div style="padding: 14px" >
-              <span>{{item.cn}}</span>
+              <span>{{clothe24[index+headIndex-1].cn}}</span>
               <div class="bottom">
                 <el-button text class="button" @click="singleobj(index)">查看详情{{index}}</el-button>
               </div>
@@ -52,7 +50,16 @@
       </el-row>
     </el-main>
     <el-footer>
-      //翻页部分
+      <div class="pageChange">
+        <el-pagination
+            v-model:current-page="pageNum"
+            layout="prev, pager, next"
+            :hide-on-single-page=true
+            :total=clothe24.length
+            :page-size=pageSize
+            @current-change="changePage"
+        />
+      </div>
     </el-footer>
   </el-container>
 </template>
@@ -79,6 +86,7 @@
 </style>
 <script>
 import qs from "qs";
+import store from "@/store";
 
 export default {
   data() {
@@ -94,26 +102,28 @@ export default {
         "https://img.alicdn.com/bao/uploaded/i1/2351667738/O1CN01pwKfXO2723NgMMcRx_!!0-item_pic.jpg",
         "https://img.alicdn.com/bao/uploaded/i3/1081711059/O1CN01rKidHr1Jh409lCeh9_!!1081711059.jpg",
         "https://t00img.yangkeduo.com/goods/images/2020-04-26/1a7189885390dc552e30e77ecca3dcc6.jpeg"
-
-
       ],
       checkTypeList: [],
       checkboxGroup1: 0,
-      clothe1: [
-        {label: "上衣", value: 1},
-        {label: "长袖", value: 2},
-        {label: "短袖", value: 3},
-        {label: "下装", value: 4},
-        {label: "长裤", value: 5},
-        {label: "短裤", value: 6},
-        {label: "鞋", value: 0},
-      ],
+      clothe1: store.state.clothTypeList,
       o: {cid: "",cpid: "",cpi: "",cpr: 0,cn: "",cde: "",cnum: 0},
-      clothe24: []
+      clothe24: [],
+      pageNum:0,
+      pageSize:2,
+      pageElemNum:this.pageSize,
+      headIndex:0,
     }
   }
   ,
   methods: {
+    async getCloth(){
+
+    },
+    changePage(val){
+      this.pageNum= val
+      this.headIndex = (this.pageNum - 1) * this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+    },
     query: function () {
       let ccolist=[]
       for (let index = 0; index < this.checkTypeList.length; index++) {
@@ -135,17 +145,19 @@ export default {
           .then(res => {
             this.clothe24=[]
             for (let i = 0; i < res.data.list.length; i++) {
-              let o1={}
-              o1.cid = res.data.list[i].cid
-              o1.cpid = res.data.list[i].cpid
-              o1.cpr = res.data.list[i].cpr
-              o1.cn = res.data.list[i].cn
-              o1.cde = res.data.list[i].cde
-              o1.cnum = res.data.list[i].cnum
-              //可能需要用list.at(i)
-              this.clothe24.add(o1)
+              this.o.cid = res.data.list[i].cid
+              this.o.cpid = res.data.list[i].cpid
+              this.o.cpr = res.data.list[i].cpr
+              this.o.cn = res.data.list[i].cn
+              this.o.cde = res.data.list[i].cde
+              this.o.cnum = res.data.list[i].cnum
+              this.clothe24.push(this.o)
             }
             //debug
+            for (let i = 0; i < 2; i++) {
+              this.o.cpr = i
+              this.clothe24.push(this.o)
+            }
           })
           .catch(err => {
                 console.log(err);
@@ -173,7 +185,6 @@ export default {
       console.log("single begin")
       console.log(typeof index, index)
       //跳转到特定的
-      // this.$router.push({name:'Login'})
 
       this.o = this.clothe24.at(index)
       this.$router.push(

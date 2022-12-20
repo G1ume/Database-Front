@@ -18,9 +18,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
 const LocalHost = 'http://localhost'
-const wxpIp='http://10.128.50.151'
+const self_net='http://192.168.3.62'
 const DefaultPort= '8000'
-axios.defaults.baseURL = LocalHost+':'+DefaultPort
+axios.defaults.baseURL = self_net+':'+DefaultPort
 app.config.globalProperties.$axios = axios // 使用globalProperties挂载，util全局挂在也一样
 
 
