@@ -40,46 +40,45 @@ export default {
   },
   methods: {
     login: function () {
-      this.$axios({
-        methods: 'post',
-        url: '/login',
-        data: qs.stringify({
-          uid: this.name,
-          upwd: this.pwd
-        }),
-        timeout: 1000,
-      })
-          .then(res => {
-            switch (res.data.result) {
-                //用户登录成功
-              case 1: {
-                store.commit("logIn", res.data.uid, res.data.un, res.data.up, false)
-                this.$router.push({
-                  name: "Main",
-                  params: {
-                    username: this.name
-                  }
-                });
-                break;
-              }
-              default: {
-                this.$router.push({
-                  name: "Main",
-                  params: {
-                    username: "shit"
-                  }
-                });
-                break;
-              }
-            }
-          })
-          .catch(err => {
-                console.log(err);
-                if (err.code === 'ECONNABORTED') {
-                  ElMessage.error('服务器响应超时！')
+      if (this.name===''||this.pwd===''){
+        ElMessage.error("请输入用户名或密码!")
+      }else {
+        this.$axios({
+          method: 'post',
+          url: '/login',
+          data: qs.stringify({
+            uid: this.name,
+            upwd: this.pwd
+          }),
+          timeout: 1000,
+        })
+            .then(res => {
+              switch (res.data.result) {
+                  //用户登录成功
+                case 1: {
+                  store.commit("logIn", res.data.uid, res.data.un, res.data.up, false)
+                  this.$router.push({
+                    name: "Main",
+                    params: {
+                      username: this.name
+                    }
+                  });
+                  break;
+                }
+                default: {
+                  console.log(res.data)
+                  break;
                 }
               }
-          )
+            })
+            .catch(err => {
+                  console.log(err);
+                  if (err.code === 'ECONNABORTED') {
+                    ElMessage.error('服务器响应超时！')
+                  }
+                }
+            )
+      }
     },
     toRegister: function () {
       this.$router.push({name: 'Register'})
