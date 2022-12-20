@@ -25,7 +25,10 @@
         >
 
 
-          <el-card :body-style="{ padding: '2px' }">
+          <el-card :body-style="{ padding: '2px' }" shadow="hover">
+            <template #header>
+              <span >{{ shareList[index - 1 + headIndex].she }}</span>
+            </template>
             <el-image
                 style="width: 150px ;height: 150px"
                 fit="cover"
@@ -34,9 +37,8 @@
 
             </el-image>
             <div style="padding: 14px">
-              <span>Yummy hamburger</span>
+              <span>{{shareList[index-1+headIndex].sde}}</span>
               <div class="bottom">
-<!--                <el-button text class="button" @click="singleobj(index)">查看详情{{ index }}</el-button>-->
                 <el-button type="danger" round @click="report(index)">举报</el-button>
               </div>
             </div>
@@ -72,11 +74,31 @@ export default {
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
-      pageElemNum: 0,
+      pageElemNum: 3,
       headIndex: 0,
     }
   },
+  created() {
+    this.demo()
+    //this.query()
+  },
   methods: {
+    demo() {
+      this.shareList=[]
+      for (let i = 0; i < 10; i++) {
+        this.shareList.push({
+          sid:i,
+          spid:"发布者"+i,
+          spi:store.state.testClothList[i],
+          scid:i,
+          sst:0,
+          she:"分享标题"+i,
+          sde:"分享描述:"+i+"this is demo",
+          sti:new Date(),
+          sco:0,
+        })
+      }
+    },
     async query() {
       let sco_list = []
       for (let index = 0; index < this.checkTypeList.length; index++) {
@@ -95,6 +117,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
+            this.shareList=[]
             for (let i = 0; i < res.data.list.length; i++) {
               this.shareList.push({
                 sco: res.data.list[i].sco,
@@ -116,14 +139,14 @@ export default {
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
-      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
     },
-    report(index){
+    report(index) {
       this.$axios({
         method: 'post',
         url: '/report_share',
         data: qs.stringify({
-          sid: this.shareList[index-1+this.headIndex].sid,
+          sid: this.shareList[index - 1 + this.headIndex].sid,
         }),
         timeout: 1000,
       })
@@ -133,7 +156,6 @@ export default {
         console.log(err)
         ElMessage.error("举报失败，检查连接")
       })
-
     }
   }
 }
