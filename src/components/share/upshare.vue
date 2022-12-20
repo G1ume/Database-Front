@@ -2,7 +2,7 @@
     <el-container>
       <el-header>
       <span style="font-size: 30px;font-weight: bold">
-        上架商品
+        分享好物
       </span>
       </el-header>
       <el-main>
