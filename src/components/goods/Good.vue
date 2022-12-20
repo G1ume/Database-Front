@@ -88,9 +88,9 @@ export default {
   methods: {
     async getCloth() {
       let cco_list = []
-      console.log("begin get ")
-      console.log(this.checkTypeList)
-      let cco1=''
+      // console.log("begin get ")
+      // console.log(this.checkTypeList)
+      let cco1='0123456'
       if(this.checkTypeList.length===0){
         cco1="0123456"
       }else {
@@ -125,6 +125,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
+            this.clothe24 = []
             for (let i = 0; i < res.data.result.length; i++) {
               this.clothe24.push({
                 cid: res.data.result[i].cid,
@@ -136,12 +137,11 @@ export default {
                 cnum: res.data.result[i].cnum
               })
             }
-            this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
           }).catch(err=>{
             console.log(err)
         ElMessage.error("获取衣服列表失败")
       })
-
+      this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
     },
     changePage(val) {
       this.pageNum = val

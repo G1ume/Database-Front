@@ -102,7 +102,8 @@ export default {
     },
     async query() {
       let sco_list = []
-      let scco1 = ''
+      let scco1 = '0123456'
+      console.log("checkType",this.checkTypeList)
       if (this.checkTypeList.length === 0) {
         scco1 = '0123456'
       } else {
@@ -138,11 +139,11 @@ export default {
                 spid: res.data.result[i].spid
               })
             }
-            this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
           }).catch(err => {
         console.log(err)
         ElMessage.error("获取分享列表失败")
       })
+      this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
     },
     changePage(val) {
       this.pageNum = val
