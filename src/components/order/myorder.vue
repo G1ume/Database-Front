@@ -83,13 +83,13 @@ export default {
           this.myOrder.push(
               {
                 "did": res.data.result[i].did,
-                "sid": res.data.result[i].dsid,
-                "bid": res.data.result[i].dbid,
-                "cid": res.data.result[i].dcid,
-                "pri": res.data.result[i].dpri,
-                "time": res.data.result[i].dti,
-                "status": res.data.result[i].dst,
-                "num": res.data.result[i].dnum,
+                "sid": res.data.result[i].sid,
+                "bid": res.data.result[i].bid,
+                "cid": res.data.result[i].cid,
+                "pri": res.data.result[i].pri,
+                "time": res.data.result[i].time,
+                "status": res.data.result[i].status,
+                "num": res.data.result[i].num,
                 "pic": res.data.result[i].pic
               })
         }
