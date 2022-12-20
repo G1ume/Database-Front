@@ -80,7 +80,7 @@ export default {
       clothe24: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
-      pageElemNum: 2,
+      pageElemNum: 0,
       headIndex: 0,
     }
   }
@@ -132,6 +132,7 @@ export default {
                 cnum: res.data.result[i].cnum
               })
             }
+            this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
           }).catch(err=>{
             console.log(err)
         ElMessage.error("获取衣服列表失败")

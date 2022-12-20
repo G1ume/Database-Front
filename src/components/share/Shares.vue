@@ -27,7 +27,7 @@
 
           <el-card :body-style="{ padding: '2px' }" shadow="hover">
             <template #header>
-              <span >{{ shareList[index - 1 + headIndex].she }}</span>
+              <span>{{ shareList[index - 1 + headIndex].she }}</span>
             </template>
             <el-image
                 style="width: 150px ;height: 150px"
@@ -37,7 +37,7 @@
 
             </el-image>
             <div style="padding: 14px">
-              <span>{{shareList[index-1+headIndex].sde}}</span>
+              <span>{{ shareList[index - 1 + headIndex].sde }}</span>
               <div class="bottom">
                 <el-button type="danger" round @click="report(index)">举报</el-button>
               </div>
@@ -71,11 +71,11 @@ export default {
   data() {
     return {
       labelList: store.state.clothTypeList,
-      checkTypeList:[],
+      checkTypeList: [],
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
-      pageElemNum: 3,
+      pageElemNum: 0,
       headIndex: 0,
     }
   },
@@ -85,18 +85,18 @@ export default {
   },
   methods: {
     demo() {
-      this.shareList=[]
+      this.shareList = []
       for (let i = 0; i < 10; i++) {
         this.shareList.push({
-          sid:i,
-          spid:"发布者"+i,
-          spi:store.state.testClothList[i],
-          scid:i,
-          sst:0,
-          she:"分享标题"+i,
-          sde:"分享描述:"+i+"this is demo",
-          sti:new Date(),
-          sco:0,
+          sid: i,
+          spid: "发布者" + i,
+          spi: store.state.testClothList[i],
+          scid: i,
+          sst: 0,
+          she: "分享标题" + i,
+          sde: "分享描述:" + i + "this is demo",
+          sti: new Date(),
+          sco: 0,
         })
       }
     },
@@ -118,7 +118,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
-            this.shareList=[]
+            this.shareList = []
             for (let i = 0; i < res.data.result.length; i++) {
               this.shareList.push({
                 sco: res.data.result[i].sco,
@@ -132,6 +132,7 @@ export default {
                 spid: res.data.result[i].spid
               })
             }
+            this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
           }).catch(err => {
         console.log(err)
         ElMessage.error("获取分享列表失败")
