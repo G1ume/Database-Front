@@ -10,13 +10,20 @@
   </div>
   <h3/>
   <div>
-
+    <el-upload
+        action=""
+        class="alignContainer"
+        :http-request="upload"
+        :show-file-list="false"
+    >
+      <div class="avatar-update">修改头像</div>
+    </el-upload>
   </div>
 </template>
-
 <script>
 import store from "@/store";
 import UploadAvatar from "@/components/userInfo/uploadAvatar.vue";
+import axios from "axios";
 
 
 export default {
@@ -47,8 +54,8 @@ export default {
       this.Axios({
         method: 'post',
         url: '/token',
-        headers:{
-          "Content-Type":"multipart/form-data",
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
         params: {
           username: "G1ume",
@@ -62,8 +69,8 @@ export default {
           method: 'post',
           url: '/profile',
           headers: {
-            "Content-Type":"multipart/form-data",
-            //'Authorization': res.data.data.token
+            //"Content-Type":"multipart/form-data",
+            Authorization: res.data.data.token,
           }
         }).then(res => {
           console.log(res)
@@ -87,6 +94,24 @@ export default {
         console.error(err)
       })
     },
+    upload(file) {
+      const formData = new FormData();
+      //formData.append("smfile", file.file)
+      //console.log(formData.get('smfile'))
+      formData.append("image",file.file)
+      console.log(formData.get('image'))
+      console.log(file.file)
+      this.Axios.post('https://api.imgbb.com/1/upload',formData,{
+        params: {
+          key: "b3af80c7860822bee54611e28f1261e2",
+        }
+      }).then((res) => {
+        console.log(res)
+        console.log(res.data.data.url);
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>

@@ -20,7 +20,7 @@
                 :src="shareList[index-1+headIndex].spi"
             ></el-image>
             <div style="padding: 14px">
-              <span>Share Body {{ shareList[index - 1 + headIndex]}}</span>
+              <span>Share Body {{ shareList[index - 1 + headIndex] }}</span>
               <div class="bottom">
                 <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
                 <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
@@ -58,13 +58,16 @@ export default {
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
-      isadmin:store.state.logInfo.admin,
+      isadmin: store.state.logInfo.admin,
       pageElemNum: 0,
       headIndex: 0,
     }
   },
-  methods:{
-    async query() {
+  created() {
+    this.query()
+  },
+  methods: {
+    query() {
       this.$axios({
         method: 'post',
         url: '/find_my_shares',
@@ -74,6 +77,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
+            this.shareList = []
             for (let i = 0; i < res.data.result.length; i++) {
               this.shareList.push({
                 sco: res.data.result[i].sco,
@@ -87,6 +91,8 @@ export default {
                 spid: res.data.result[i].spid
               })
             }
+            this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
+            console.log(this.shareList)
           }).catch(err => {
         console.log(err)
         ElMessage.error("获取分享列表失败")
@@ -97,12 +103,12 @@ export default {
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
     },
-    reject(index){
+    reject(index) {
       this.$axios({
         method: 'post',
         url: '/reject',
         data: qs.stringify({
-          sid: shareList[index - 1 + headIndex].sid
+          sid: this.shareList[index - 1 + this.headIndex].sid
         }),
         timeout: 1000,
       }).catch(err => {
@@ -110,12 +116,12 @@ export default {
         ElMessage.error("驳回处理失败")
       })
     },
-    agree (index){
+    agree(index) {
       this.$axios({
         method: 'post',
         url: '/agree',
         data: qs.stringify({
-          sid: shareList[index - 1 + headIndex].sid
+          sid: this.shareList[index - 1 + this.headIndex].sid
         }),
         timeout: 1000,
       }).catch(err => {
