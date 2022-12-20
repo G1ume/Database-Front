@@ -36,7 +36,8 @@
             <div style="padding: 14px">
               <span>Yummy hamburger</span>
               <div class="bottom">
-                <el-button text class="button" @click="singleobj(index)">查看详情{{ index }}</el-button>
+<!--                <el-button text class="button" @click="singleobj(index)">查看详情{{ index }}</el-button>-->
+                <el-button type="danger" round @click="report(index)">举报</el-button>
               </div>
             </div>
           </el-card>
@@ -117,6 +118,23 @@ export default {
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
     },
+    report(index){
+      this.$axios({
+        method: 'post',
+        url: '/report_share',
+        data: qs.stringify({
+          sid: shareList[index-1+headIndex].sid,
+        }),
+        timeout: 1000,
+      })
+          .then(res => {
+
+          }).catch(err => {
+        console.log(err)
+        ElMessage.error("举报失败，检查连接")
+      })
+
+    }
   }
 }
 </script>
