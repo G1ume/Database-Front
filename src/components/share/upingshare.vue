@@ -58,6 +58,7 @@ export default {
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
+      isadmin:store.state.logInfo.admin,
       pageElemNum: 0,
       headIndex: 0,
     }
