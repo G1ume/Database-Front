@@ -21,8 +21,8 @@
             ></el-image>
             <div style="padding: 14px">
               <span>消息id:{{ item.mid}}</span>
-              <span>时间:{{ item.mt}}</span>
-              <span>{{ item.mc}}</span>
+              <span>时间:{{ item.mtime}}</span>
+              <span>{{ item.mcontent}}</span>
 
               <div class="bottom">
 
