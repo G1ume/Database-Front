@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "myporder"
+  name: "myorder"
 }
 </script>
 

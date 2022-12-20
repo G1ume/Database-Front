@@ -41,7 +41,8 @@
       <h6></h6>
 
       <div class="myShare">
-        <el-button type="success" plain @click="Upingshare">我的分享</el-button>
+        <el-button type="success" plain @click="Upingshare" v-if="isuser">分享</el-button>
+        <el-button type="success" plain @click="Upingshare" v-if="!isuser">被举报的分享</el-button>
       </div>
     </el-main>
     <el-footer>
@@ -74,6 +75,7 @@ export default {
   name: "PersonalCenter",
   data() {
     return {
+      isuser:store.state.logInfo.admin,
       name: '用户昵称',
       userId: 0,
       defaultSrc: "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
