@@ -19,19 +19,29 @@
         </div>
       </el-card>
       <h6></h6>
+
       <div class="">
         <el-button type="success" plain @click="toUpgood">上架商品</el-button>
       </div>
+      <h6></h6>
+
       <div class="">
         <el-button type="success" plain @click="Upinggood">已上架商品</el-button>
       </div>
       <h6></h6>
+
       <div class="">
         <el-button type="success" plain @click="toIndent">我的订单</el-button>
       </div>
       <h6></h6>
+
       <div class="myShare">
-        <el-button type="success" plain @click="toShare">我的分享</el-button>
+        <el-button type="success" plain @click="toUpshare">去分享</el-button>
+      </div>
+      <h6></h6>
+
+      <div class="myShare">
+        <el-button type="success" plain @click="Upingshare">我的分享</el-button>
       </div>
     </el-main>
     <el-footer>
@@ -74,6 +84,16 @@ export default {
 
   },
   methods: {
+    Upingshare(){
+      this.$router.push({
+        name:"upingshare"
+      })
+    },
+    toUpshare(){
+      this.$router.push({
+        name:"upshare"
+      })
+    },
     Upinggood(){
       this.$router.push({
         name:"upinggood"
@@ -82,11 +102,6 @@ export default {
     toUpgood(){
       this.$router.push({
         name:"upgood"
-      })
-    },
-    toShare() {
-      this.$router.push({
-        name:"AccountShare"
       })
     },
     toEditUserInfo() {

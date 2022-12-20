@@ -11,6 +11,7 @@ import goodbuy from "@/components/trade/buypage.vue"
 import upgood from "@/components/goods/upgood.vue";
 import upinggood from "@/components/goods/upinggood.vue";
 import Shares from "@/components/share/Shares.vue";
+import upshare from "@/components/share/upshare.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import debug from "@/debug.vue";
 
@@ -100,6 +101,14 @@ const routes = [{
         path: '/debug',
         name: 'debug',
         component: debug,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/share/up',
+        name: 'upshare',
+        component: upshare,
         meta: {
             keepalive: true
         }
