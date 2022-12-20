@@ -11,16 +11,16 @@
         <el-card :body-style="{ padding: '0px' }" shadow="hover">
           <h6></h6>
           <div>
-            分享的图片: <el-input placeholder="请输入商品的图片url" v-model="s.spi" clearable class="input_style"></el-input>
+            分享的图片: <el-input placeholder="请输入分享的图片url" v-model="s.spi" clearable class="input_style"></el-input>
           </div>
           <div>
-            衣服的id: <el-input placeholder="请输入商品的id" v-model="s.scid" clearable class="input_style"></el-input>元
+            衣服的id: <el-input placeholder="请输入衣服的id" v-model="s.scid" clearable class="input_style"></el-input>元
           </div>
           <div>
-            分享的标题: <el-input placeholder="请输入商品的名称" v-model="s.she" clearable class="input_style"></el-input>
+            分享的标题: <el-input placeholder="请输入分享的标题" v-model="s.she" clearable class="input_style"></el-input>
           </div>
           <div>
-            商品的描述:
+            分享的描述:
             <el-input
                 v-model="s.sde"
                 :autosize="{ minRows: 2, maxRows: 4 }"
@@ -29,9 +29,7 @@
                 class="input_style"
             />
           </div>
-          <div>
-            发布时间: <el-input placeholder="请输入时间" v-model="o.cnum" clearable class="input_style"></el-input>件
-          </div>
+
 
           <el-checkbox-group v-model="checkTypeList" size="large">
             <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
@@ -45,7 +43,7 @@
       </el-main>
       <el-footer>
         <div>
-          <el-button @click="upshare">上传商品</el-button>
+          <el-button @click="upshare">上传分享</el-button>
         </div>
       </el-footer>
     </el-container>
@@ -93,36 +91,38 @@ export default {
       }
       let cco1=ccolist.join()
       console.log("cco1",cco1)
-
+      let aData = new Date();
+      let dateValue = aData.getFullYear() + "-" + (aData.getMonth() + 1) + "-" + aData.getDate();
+      console.log(dateValue)
       console.log(this.s.spi)
       this.$axios({
         method: 'post',
         url: '/?',
         data: qs.stringify({
-          cid: this.o.cid,
-          cpid: this.o.cpid,
-          cpi:this.o.cpi,
-          cpr:this.o.cn,
-          cn:this.o.cde,
-          cco: cco1,
-          cnum:this.o.cnum
+          sco: this.s.sco,
+          spi: this.s.spi,
+          scid:this.s.scid,
+          she:this.s.she,
+          sde:this.s.sde,
+          sti: dateValue,
+          spid:this.s.spid
         }),
         timeout: 1000,
       })
           .then(res => {
-            switch (res.data.cst) {
+            switch (res.data.sst) {
               case 0: {
                 this.fail()
                 break;
               }
-                //用户登录成功
+                //分享成功
               case 1: {
                 this.success()
                 // store.commit("logIn", res.data.uid, res.data.un, res.data.up, false)
                 break;
               }
               default: {
-                console.log("error cst")
+                console.log("error sst")
                 break;
               }
             }
@@ -139,7 +139,7 @@ export default {
     }
     ,
     fail:function (){
-      ElMessage('上架失败,请重新检查您的提交.')
+      ElMessage('分享失败,请重新检查您的提交.')
     },
     success:function (){
       ElMessage('上架成功,即将前往个人中心.')
