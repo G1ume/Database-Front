@@ -47,7 +47,8 @@
         </el-icon>
       </el-menu-item>
     </el-tooltip>
-    <el-menu-item index="/Login" v-show="offline">登录</el-menu-item>
+    <el-menu-item index="/Login" v-show="offline()">登录</el-menu-item>
+    <el-menu-item index="/debug" v-show="isAdmin()">管理员调试</el-menu-item>
     <!--<el-sub-menu index="2">-->
     <!--  <template #title>我的工作台</template>-->
     <!--  <el-menu-item index="2-1">选项1</el-menu-item>-->
@@ -109,6 +110,9 @@ export default {
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath)
+    },
+    isAdmin(){
+      return store.state.logInfo.admin
     },
   },
 }

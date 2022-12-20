@@ -123,7 +123,7 @@ export default {
         method: 'post',
         url: '/report_share',
         data: qs.stringify({
-          sid: shareList[index-1+headIndex].sid,
+          sid: this.shareList[index-1+this.headIndex].sid,
         }),
         timeout: 1000,
       })
