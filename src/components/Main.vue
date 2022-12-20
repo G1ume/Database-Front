@@ -3,9 +3,10 @@
   <div class="main">
 
     <h1>{{ msg2 }} {{ msg }}</h1>
-    <el-button @click="fn">ShowParams</el-button>
-    <el-button @click="t">ShowRoute</el-button>
-    <el-button @click="toLogin">login</el-button>
+    <h6 v-show="online()">用户：{{getName()}}</h6>
+<!--    <el-button @click="fn">ShowParams</el-button>-->
+<!--    <el-button @click="t">ShowRoute</el-button>-->
+<!--    <el-button @click="toLogin">login</el-button>-->
     <div class="block text-center">
 <!--    <span class="demonstration"-->
 <!--    >Switch when indicator is hovered (default)</span-->
@@ -37,6 +38,8 @@ console.log(route.query)
 </script>
 <script>
 
+import store from "@/store";
+
 export default {
   data() {
     return {
@@ -58,6 +61,12 @@ export default {
     },
     toLogin:function () {
       this.$router.push({name:'Login'})
+    },
+    online(){
+      return store.state.logInfo.access_token
+    },
+    getName(){
+      return store.state.logInfo.user_name
     }
   }
 }

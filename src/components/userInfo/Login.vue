@@ -40,9 +40,9 @@ export default {
   },
   methods: {
     login: function () {
-      if (this.name===''||this.pwd===''){
+      if (this.name === '' || this.pwd === '') {
         ElMessage.error("请输入用户名或密码!")
-      }else {
+      } else {
         this.$axios({
           method: 'post',
           url: '/login',
@@ -54,19 +54,40 @@ export default {
         })
             .then(res => {
               switch (res.data.result) {
+                case 0:{
+                  ElMessage.error("用户名或密码错误！")
+                  break;
+                }
                   //用户登录成功
                 case 1: {
-                  store.commit("logIn", res.data.uid, res.data.un, res.data.up, false)
+                  store.commit("logIn", {
+                    userId: res.data.uid,
+                    userName: res.data.un,
+                    userAvatar: res.data.up,
+                    isAdmin: false
+                  })
                   this.$router.push({
                     name: "Main",
-                    params: {
-                      username: this.name
-                    }
                   });
                   break;
                 }
+                //管理员登录成功
+                case 3:{
+                  store.commit("logIn", {
+                    userId: res.data.uid,
+                    userName: res.data.un,
+                    userAvatar: res.data.up,
+                    isAdmin: true
+                  })
+                  this.$router.push({
+                    name: "Main",
+                  });
+                  break;
+                }
+                //登录失败
                 default: {
                   console.log(res.data)
+                  ElMessage.error("登录失败！用户不存在")
                   break;
                 }
               }

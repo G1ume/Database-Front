@@ -40,7 +40,7 @@ export default createStore({
             state.logInfo.user_name = '游客'
             state.logInfo.user_id = ''
             state.logInfo.user_avatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
-            state.logInfo.isAdmin = false
+            state.logInfo.admin = false
             Cookies.set('logInfo', state.logInfo)
         },
         logIn(state, userInfo) {

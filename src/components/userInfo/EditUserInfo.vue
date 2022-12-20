@@ -119,7 +119,7 @@ export default {
         methods: 'post',
         url: '/account/edit/pwd',
         data: qs.stringify({
-          uid: this.name,
+          uid: store.state.logInfo.user_id,
           oldpwd: this.oldpwd,
           newpwd: this.newpwd
         }),
@@ -154,7 +154,7 @@ export default {
         method: 'post',
         url: '/account/edit/name',
         data: qs.stringify({
-          uid: this.name,
+          uid: store.state.logInfo.user_id,
           nun: this.nun,
         }),
         timeout: 1500,

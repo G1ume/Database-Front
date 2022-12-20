@@ -47,21 +47,23 @@ import axios from "axios";
 
 const upload = (file) => {
   const formData = new FormData();
-  formData.append('key', "49ef2388d437cb4308b8a2668ebae97f")
-  formData.append('image', file.file)
-  formData.append('name', "ce ni ma")
-  console.log(formData)
-  axios({
-    method: 'post',
-    url: "https://api.imgbb.com/1/upload",
-  }, {timeout: 2000}).then(res => {
-    console.log(res.data)
-  }).catch(err => {
+   formData.append("smfile", file.file)
+  console.log(formData.get('image'))
+  axios.post("https://smms.app/v2/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": "xxx",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      }).catch(err => {
     console.log(err)
   })
 }
 </script>
 <script>
+
 export default {
   name: "uploadAvatar",
 
@@ -69,6 +71,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>
