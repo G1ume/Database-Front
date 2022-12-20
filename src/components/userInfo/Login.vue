@@ -41,7 +41,7 @@ export default {
   methods: {
     login: function () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/login',
         data: qs.stringify({
           uid: this.name,

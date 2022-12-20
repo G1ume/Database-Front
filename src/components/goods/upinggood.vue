@@ -63,7 +63,7 @@ export default {
   methods: {
     query: function () {
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/querydingdan/',
         data: qs.stringify({
           cpid: this.uid,

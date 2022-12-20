@@ -151,7 +151,7 @@ export default {
     changeName() {
       this.nameLoading = true
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/account/edit/name',
         data: qs.stringify({
           uid: this.name,

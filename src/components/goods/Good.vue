@@ -125,7 +125,7 @@ export default {
       let cco1=ccolist.join()
       console.log("cco1",cco1)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/query/',
         data: qs.stringify({
           cco: cco1,
