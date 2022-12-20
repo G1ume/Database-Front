@@ -69,7 +69,7 @@ export default {
   created() {
     this.$axios({
       method: 'post',
-      url: '/find_message',
+      url: '/find_my_message',
       data: qs.stringify({
         uid: store.state.logInfo.user_id
       }),

@@ -144,7 +144,7 @@ export default {
     report(index) {
       this.$axios({
         method: 'post',
-        url: '/report_share',
+        url: '/report',
         data: qs.stringify({
           sid: this.shareList[index - 1 + this.headIndex].sid,
           uid: store.state.logInfo.user_id

@@ -87,7 +87,7 @@ export default {
       console.log(this.o.cpi)
       this.$axios({
         method: 'post',
-        url: '/?',
+        url: '/regist_clothing',
         data: qs.stringify({
           cid: this.o.cid,
           cpid: this.o.cpid,
