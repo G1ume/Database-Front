@@ -86,7 +86,7 @@ export default {
 
       console.log(this.o.cpi)
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/?',
         data: qs.stringify({
           cid: this.o.cid,

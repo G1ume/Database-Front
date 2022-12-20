@@ -68,7 +68,7 @@ export default {
     finalbuy:function(){
       ElMessage('购买成功,即将前往个人中心.')
       this.$axios({
-        methods: 'post',
+        method: 'post',
         url: '/?',
         data: qs.stringify({
           cid: this.name,
