@@ -102,12 +102,18 @@ export default {
     },
     async query() {
       let sco_list = []
-      for (let index = 0; index < this.checkTypeList.length; index++) {
-        let item = this.checkTypeList[index];
-        sco_list.push(item)
-        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+      let scco1 = ''
+      if (this.checkTypeList.length === 0) {
+        scco1 = '0123456'
+      } else {
+        for (let index = 0; index < this.checkTypeList.length; index++) {
+          let item = this.checkTypeList[index];
+          sco_list.push(item)
+          //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+        }
+        scco1 = sco_list.join("")
       }
-      let scco1 = sco_list.join("")
+
       this.$axios({
         method: 'post',
         url: '/find_sco_shares',

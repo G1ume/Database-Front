@@ -90,13 +90,17 @@ export default {
       let cco_list = []
       console.log("begin get ")
       console.log(this.checkTypeList)
-      for (let index = 0; index < this.checkTypeList.length; index++) {
-        let item = this.checkTypeList[index];
-        cco_list.push(item)
-        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+      let cco1=''
+      if(this.checkTypeList.length===0){
+        cco1="0123456"
+      }else {
+        for (let index = 0; index < this.checkTypeList.length; index++) {
+          let item = this.checkTypeList[index];
+          cco_list.push(item)
+          //dubug使用，正式的使用可以直接发送 checkTypeList到后端
+        }
+        cco1 = cco_list.join("")
       }
-      let cco1 = cco_list.join("")
-
       console.log("cco1=",cco1)
       this.clothe24 = []
       for (let i = 0; i < this.clist.length; i++) {
