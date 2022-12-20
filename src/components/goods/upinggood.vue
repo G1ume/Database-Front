@@ -34,6 +34,18 @@
         </el-col>
       </el-row>
     </el-main>
+    <el-footer>
+      <div class="pageChange">
+        <el-pagination
+            v-model:current-page="pageNum"
+            layout="prev, pager, next"
+            :hide-on-single-page=true
+            :total=clothe24.length
+            :page-size=pageSize
+            @current-change="changePage"
+        />
+      </div>
+    </el-footer>
   </el-container>
 </template>
 <script>
@@ -46,16 +58,25 @@ export default {
       uid:"",
       clist: store.state.testClothList,
       curo: {cid: "", cpid: "", cpi: "", cpr: 0, cn: "", cde: "", cnum: 0},
-      clothe24: []
+      clothe24: [],
+      pageNum: 0,
+      pageSize: store.state.pagecfg.pagesize,
+      pageElemNum: 2,
+      headIndex: 0,
     }
   },
   methods: {
+    changePage(val) {
+      this.pageNum = val
+      this.headIndex = (this.pageNum - 1) * this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+    },
     query: function () {
       this.$axios({
         method: 'post',
         url: '/querydingdan/',
         data: qs.stringify({
-          cpid: this.uid,
+          cpid:store.state.logInfo.user_id,
         }),
         timeout: 1000,
       })
@@ -75,18 +96,18 @@ export default {
             //debug
 
           }).catch(err => {
-            console.log("no connection")
-        this.clothe24=[]
-        for (let i = 0; i < this.clist.length; i++) {
-          let o= {}
-          o.cpi = this.clist.at(i)
-          o.cid = i
-          o.cpr =i*100
-          o.cn = "第"+i+"件上架"
-          o.cde = "第"+i+"件上架"
-          o.cnum = i*10
-          this.clothe24.push(o)
-        }
+            console.log(err)
+        // this.clothe24=[]
+        // for (let i = 0; i < this.clist.length; i++) {
+        //   let o= {}
+        //   o.cpi = this.clist.at(i)
+        //   o.cid = i
+        //   o.cpr =i*100
+        //   o.cn = "第"+i+"件上架"
+        //   o.cde = "第"+i+"件上架"
+        //   o.cnum = i*10
+        //   this.clothe24.push(o)
+        // }
         }
       )
     }

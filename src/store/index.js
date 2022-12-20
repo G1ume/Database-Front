@@ -8,6 +8,7 @@ export default createStore({
         logInfo: {access_token: false, user_name: '游客', user_id: '',
             user_avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png', admin: false},
         clothList:[],
+        pagecfg:{pagesize:2},
         clothTypeList:[
             {label: "上衣", value: 1},
             {label: "长袖", value: 2},

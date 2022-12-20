@@ -14,6 +14,7 @@ import Shares from "@/components/share/Shares.vue";
 import upshare from "@/components/share/upshare.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import debug from "@/debug.vue";
+import upingshare from "@/components/share/upingshare.vue";
 
 
 const routerHistory = createWebHistory()
@@ -119,6 +120,22 @@ const routes = [{
         component: Shares,
         meta: {
             keepalive: true
+        }
+    },
+    {
+        path: '/account/share',
+        name: 'upingshare',
+        component: upingshare,
+        meta: {
+            keepalive: false
+        }
+    },
+    {
+        path: '/account/goods',
+        name: 'upinggood',
+        component: upinggood,
+        meta: {
+            keepalive: false
         }
     },
 ]

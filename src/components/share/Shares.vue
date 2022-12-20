@@ -50,7 +50,7 @@
             v-model:current-page="pageNum"
             layout="prev, pager, next"
             :hide-on-single-page=true
-            :total=clothe24.length
+            :total=shareList.length
             :page-size=pageSize
             @current-change="changePage"
         />
@@ -70,8 +70,8 @@ export default {
       laobelList: store.state.clothTypeList,
       shareList: [],
       pageNum: 0,
-      pageSize: 2,
-      pageElemNum: 0,
+      pageSize: store.state.pagecfg.pagesize,
+      pageElemNum: store.state.pagecfg.pagesize,
       headIndex: 0,
     }
   },

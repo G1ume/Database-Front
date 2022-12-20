@@ -79,7 +79,7 @@ export default {
       o: {cid: "", cpid: "", cpi: "", cpr: 0, cn: "", cde: "", cnum: 0},
       clothe24: [],
       pageNum: 0,
-      pageSize: 2,
+      pageSize: store.state.pagecfg.pagesize,
       pageElemNum: 2,
       headIndex: 0,
     }
