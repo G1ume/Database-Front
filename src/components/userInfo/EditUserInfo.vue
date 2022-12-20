@@ -168,6 +168,7 @@ export default {
             this.nameLoading = false
             switch (res.data.result) {
               case 1: {
+                store.commit('editUserName',this.nun)
                 ElMessage.success("昵称修改成功！")
                 break;
               }

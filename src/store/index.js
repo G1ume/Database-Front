@@ -35,6 +35,9 @@ export default createStore({
         getLogInfo(state) {
             state.logInfo = qs.parse(Cookies.get("logInfo"))
         },
+        editUserName(state,val){
+            state.logInfo.user_name = val
+        },
         logOut(state) {
             state.logInfo.access_token = false
             state.logInfo.user_name = '游客'
