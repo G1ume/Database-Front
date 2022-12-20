@@ -123,6 +123,9 @@ export default {
         ElMessage.error("接受处理失败")
       })
     }
+  },
+  created() {
+    this.query()
   }
 }
 </script>
