@@ -69,7 +69,7 @@ export default {
         method: 'post',
         url: '/find_my_shares',
         data: qs.stringify({
-          uid: store.state.logInfo.user_id
+          spid: store.state.logInfo.user_id
         }),
         timeout: 1000,
       })
