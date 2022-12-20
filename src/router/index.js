@@ -10,14 +10,14 @@ import singlegood from "@/components/goods/singlegood.vue"
 import goodbuy from "@/components/trade/buypage.vue"
 import upgood from "@/components/goods/upgood.vue";
 import upinggood from "@/components/goods/upinggood.vue";
-import Shares from "@/components/share/Shares.vue";
+import shares from "@/components/share/Shares.vue";
 import upshare from "@/components/share/upshare.vue";
 import myorder from "@/components/order/myorder.vue";
 import message from "@/components/message/message.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import debug from "@/debug.vue";
 import sampleOrder from "@/components/order/sampleOrder.vue";
-
+import upingshare from "@/components/share/upingshare.vue";
 
 const routerHistory = createWebHistory()
 const routes = [{
@@ -112,6 +112,22 @@ const routes = [{
         path: '/share/up',
         name: 'upshare',
         component: upshare,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/share/uping',
+        name: 'upingshare',
+        component: upingshare,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/shares',
+        name: 'shares',
+        component: shares,
         meta: {
             keepalive: true
         }
