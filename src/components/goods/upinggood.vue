@@ -81,15 +81,16 @@ export default {
       })
           .then(res => {
             this.clothe24=[]
-            for (let i = 0; i < res.data.alist.length ; i++) {
+            let alist=eval(res.data.alist)
+            for (let i = 0; i < alist.length ; i++) {
               let o= {}
-              o.cid = res.data.alist.at(i).cid
-              o.cpid = res.data.alist.at(i).cpid
-              o.cpic = res.data.alist.at(i).cpic
-              o.cpr = res.data.alist.at(i).cpr
-              o.cn = res.data.alist.at(i).cn
-              o.cde = res.data.alist.at(i).cde
-              o.cnum = res.data.alist.at(i).cnum
+              o.cid = alist.at(i).cid
+              o.cpid = alist.at(i).cpid
+              o.cpic = alist.at(i).cpic
+              o.cpr = alist.at(i).cpr
+              o.cn = alist.at(i).cn
+              o.cde = alist.at(i).cde
+              o.cnum = alist.at(i).cnum
               this.clothe24.push(o)
             }
             //debug
