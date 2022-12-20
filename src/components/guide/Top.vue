@@ -28,7 +28,7 @@
         placement="bottom"
         :disabled="!offline()"
     >
-      <el-menu-item index="4" :disabled="offline">消息
+      <el-menu-item index="4" :disabled="offline()">消息
         <el-icon>
           <Promotion/>
         </el-icon>
@@ -41,7 +41,7 @@
         placement="bottom"
         :disabled="!offline()"
     >
-      <el-menu-item index="/account/home" :disabled="offline">个人
+      <el-menu-item index="/account/home" :disabled="offline()">个人
         <el-icon>
           <UserFilled/>
         </el-icon>

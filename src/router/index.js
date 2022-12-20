@@ -12,6 +12,7 @@ import upgood from "@/components/goods/upgood.vue";
 import upinggood from "@/components/goods/upinggood.vue";
 import Shares from "@/components/share/Shares.vue";
 import {createRouter, createWebHistory} from 'vue-router'
+import debug from "@/debug.vue";
 
 
 const routerHistory = createWebHistory()
@@ -91,6 +92,14 @@ const routes = [{
         path: '/good/uping',
         name: 'upinggood',
         component: upinggood,
+        meta: {
+            keepalive: true
+        }
+    },
+    {
+        path: '/debug',
+        name: 'debug',
+        component: debug,
         meta: {
             keepalive: true
         }

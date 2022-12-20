@@ -25,36 +25,7 @@
                   title="上传新头像！"
                   width="20%"
               >
-                <el-upload
-                    class="upload-demo"
-                    drag
-                    action="https://api.imgbb.com/1/upload"
-                    show-file-list
-                    accept=".jpg,.png,.jpeg"
-                    :auto-upload="false"
-                    :multiple="false"
-                    :limit="1"
-                >
-                  <el-icon class="el-icon--upload">
-                    <upload-filled/>
-                  </el-icon>
-                  <div class="el-upload__text">
-                    拖拽图片到此处 或 <em> 点击上传</em>
-                  </div>
-                  <template #tip>
-                    <div class="el-upload__tip">
-                      jpg/png files with a size less than 500kb
-                    </div>
-                  </template>
-                </el-upload>
-                <template #footer>
-                  <span class="dialog-footer">
-                    <el-button @click="avatarLoading = false">取消</el-button>
-                    <el-button type="primary" @click="uploadAvatar">
-                      确认
-                    </el-button>
-                  </span>
-                </template>
+                <UploadAvatar/>
               </el-dialog>
             </el-card>
           </el-col>
@@ -115,9 +86,11 @@
 import qs from "qs";
 import {ElMessage} from "element-plus";
 import store from "@/store";
+import UploadAvatar from "@/components/userInfo/uploadAvatar.vue";
 
 export default {
   name: "EditPersonalCenter",
+  components: {UploadAvatar},
   data() {
     return {
       nun: "",

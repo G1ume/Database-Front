@@ -21,12 +21,12 @@ export default createStore({
             state.logInfo.isAdmin = false
             Cookies.set('logInfo', state.logInfo)
         },
-        logIn(state, userId, userName, userAvatar, isAdmin) {
+        logIn(state, userInfo) {
             state.logInfo.access_token = true
-            state.logInfo.user_avatar = userAvatar
-            state.logInfo.user_id = userId
-            state.logInfo.user_name = userName
-            state.logInfo.admin = isAdmin
+            state.logInfo.user_avatar = userInfo.userAvatar
+            state.logInfo.user_id =userInfo.userId
+            state.logInfo.user_name = userInfo.userName
+            state.logInfo.admin = userInfo.isAdmin
 
             Cookies.set('logInfo', state.logInfo)
         },
