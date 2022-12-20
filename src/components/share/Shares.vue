@@ -165,6 +165,9 @@ export default {
         console.log(err)
         ElMessage.error("举报失败，检查连接")
       })
+    },
+    created(){
+      this.query()
     }
   }
 }
