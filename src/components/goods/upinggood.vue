@@ -81,7 +81,7 @@ export default {
       })
           .then(res => {
             this.clothe24=[]
-            for (let i = 0; i < res.data.list.length; i++) {
+            for (let i = 0; i < res.data.alist.length; i++) {
               let o= {}
               o.cid = res.data.list.at(i).cid
               o.cpid = res.data.list.at(i).cpid
