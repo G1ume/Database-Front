@@ -23,7 +23,7 @@
               <span>Share Body {{ shareList[index - 1 + headIndex]}}</span>
               <div class="bottom">
                 <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
-                <el-button v-if="isadmin" @click="accept(index)">接受</el-button>
+                <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
               </div>
             </div>
           </el-card>
@@ -110,7 +110,7 @@ export default {
         ElMessage.error("驳回处理失败")
       })
     },
-    accpet(index){
+    agree (index){
       this.$axios({
         method: 'post',
         url: '/agree',
