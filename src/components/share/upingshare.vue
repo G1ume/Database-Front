@@ -93,7 +93,7 @@ export default {
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
-      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
     },
   }
 }

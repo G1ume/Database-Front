@@ -6,46 +6,34 @@
       </h1>
     </el-header>
     <el-main>
+      <el-card>
+        <el-table :data="myOrder">
+          <el-table-column prop="pic" label="缩略图">
+            <template #default="scope">
+              <el-image
+                  style="width: 50px ;height: 50px"
+                  fit="cover"
+                  :src="myOrder[scope.$index].pic"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column prop="dcid" label="衣服id">
+          </el-table-column>
+          <el-table-column prop="dpri" label="订单总价">
 
-      <el-row type="flex">
-        <el-col
-            v-for="index in pageElemNum"
-            :key="index"
-            :span="5.5"
-            :offset="1"
-        >
-          <el-card :body-style="{ padding: '2px' }">
-            <el-image
-                style="width: 150px ;height: 150px"
-                fit="cover"
-                :src="myOrder[index+headIndex-1]"
-            >
+          </el-table-column>
+          <el-table-column prop="dti" label="创建时间">
 
-            </el-image>
-
-            <div style="padding: 14px">
-              <span>{{ myOrder[index + headIndex - 1] }}</span>
-              <div class="bottom">
-                <el-button text class="button" @click="orderSample(index+headIndex-1)">查看详情{{ index }}</el-button>
-              </div>
-            </div>
-          </el-card>
-          <h6></h6>
-        </el-col>
-      </el-row>
+          </el-table-column>
+          <el-table-column prop="" label="操作">
+            <template #default="scope">
+              <el-button @click="orderSample(scope.$index)" type="primary">查看详情</el-button>
+              <el-button @click="buy" type="danger">结算</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-card>
     </el-main>
-    <el-footer>
-      <div class="pageChange">
-        <el-pagination
-            v-model:current-page="pageNum"
-            layout="prev, pager, next"
-            :hide-on-single-page=true
-            :total=myOrder.length
-            :page-size=pageSize
-            @current-change="changePage"
-        />
-      </div>
-    </el-footer>
   </el-container>
 </template>
 <script>
@@ -65,6 +53,21 @@ export default {
     }
   },
   methods: {
+    demo() {
+      this.myOrder = []
+      for (let i = 0; i < 10; i++) {
+        this.myOrder.push({
+          did: i,
+          dsid: "卖家id" + i,
+          dcid: "衣服id" + i,
+          dpri: i * 100.3,
+          dst: 0,
+          dti: new Date(),
+          dnum: i * 30,
+          pic: store.state.testClothList[i],
+        })
+      }
+    },
     async getOrder() {
       this.myOrder = []
       this.$axios(
@@ -88,19 +91,20 @@ export default {
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
-      this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
+      this.pageElemNum = (this.pageNum) * this.pageSize > this.myOrder.length ? this.myOrder.length - this.headIndex : this.pageSize
     },
     orderSample(index) {
       this.$router.push({
-        name:'sampleOrder',
-        query:{
-          orderId:this.myOrder[index]
+        name: 'sampleOrder',
+        query: {
+          orderId: this.myOrder[index]
         }
       })
     }
   },
   created() {
     this.getOrder()
+    this.demo()
   }
 }
 </script>
