@@ -82,7 +82,13 @@ export default {
       this.$router.push({
         name: "goodbuy",
         query: {
-          cid: this.o.cid
+          cid: this.o.cid,
+          cpi: this.o.cpi,
+          cpr: this.o.cpr,
+          cpid: this.o.cpid,
+          cn: this.o.cn,
+          cde: this.o.cde,
+          cnum: this.o.cnum
         }
       })
     },

@@ -97,7 +97,7 @@ export default {
           she:this.s.she,
           sde:this.s.sde,
           sti: dateValue,
-          spid:this.s.spid
+          spid:store.state.logInfo.user_id
         }),
         timeout: 1000,
       })

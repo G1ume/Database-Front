@@ -76,12 +76,13 @@ export default {
       //确认上传
       let ccolist=[]
       for (let index = 0; index < this.checkTypeList.length; index++) {
+
         let item = this.checkTypeList[index];
         console.log("item", item);
         ccolist.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      let cco1=ccolist.join()
+      let cco1=ccolist.join("")
       console.log("cco1",cco1)
 
       console.log(this.o.cpi)
@@ -90,11 +91,12 @@ export default {
         url: '/regist_clothing',
         data: qs.stringify({
           cid: this.o.cid,
-          cpid: this.o.cpid,
+          cpid: store.state.logInfo.user_id,
           cpi:this.o.cpi,
-          cpr:this.o.cn,
-          cn:this.o.cde,
+          cpr:this.o.cpr,
+          cn:this.o.cn,
           cco: cco1,
+          cde:this.o.cde,
           cnum:this.o.cnum
         }),
         timeout: 1000,

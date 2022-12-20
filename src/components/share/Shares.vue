@@ -77,6 +77,7 @@ export default {
       pageSize: store.state.pagecfg.pagesize,
       pageElemNum: 3,
       headIndex: 0,
+      checkTypeList:[]
     }
   },
   created() {
@@ -107,7 +108,7 @@ export default {
         sco_list.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      let scco1 = sco_list.join()
+      let scco1 = sco_list.join("")
       this.$axios({
         method: 'post',
         url: '/find_cco_cloths',
@@ -119,17 +120,17 @@ export default {
       })
           .then(res => {
             this.shareList=[]
-            for (let i = 0; i < res.data.list.length; i++) {
+            for (let i = 0; i < res.data.result.length; i++) {
               this.shareList.push({
-                sco: res.data.list[i].sco,
-                sid: res.data.list[i].sid,
-                spi: res.data.list[i].spi,
-                sst: res.data.list[i].sst,
-                scid: res.data.list[i].scid,
-                she: res.data.list[i].she,
-                sde: res.data.list[i].sde,
-                sti: res.data.list[i].sti,
-                spid: res.data.list[i].spid
+                sco: res.data.result[i].sco,
+                sid: res.data.result[i].sid,
+                spi: res.data.result[i].spi,
+                sst: res.data.result[i].sst,
+                scid: res.data.result[i].scid,
+                she: res.data.result[i].she,
+                sde: res.data.result[i].sde,
+                sti: res.data.result[i].sti,
+                spid: res.data.result[i].spid
               })
             }
           }).catch(err => {

@@ -88,13 +88,16 @@ export default {
   methods: {
     async getCloth() {
       let cco_list = []
+      console.log("begin get ")
+      console.log(this.checkTypeList)
       for (let index = 0; index < this.checkTypeList.length; index++) {
         let item = this.checkTypeList[index];
         cco_list.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      let cco1 = cco_list.join()
-      console.log("cco1", cco1)
+      let cco1 = cco_list.join("")
+
+      console.log("cco1=",cco1)
       this.clothe24 = []
       for (let i = 0; i < this.clist.length; i++) {
         let m = {}
@@ -107,6 +110,7 @@ export default {
         m.cpi = this.clist.at(i)
         this.clothe24.push(m)
       }
+
       this.$axios({
         method: 'post',
         url: '/find_cco_cloths',
@@ -117,15 +121,15 @@ export default {
         timeout: 1000,
       })
           .then(res => {
-            for (let i = 0; i < res.data.list.length; i++) {
+            for (let i = 0; i < res.data.result.length; i++) {
               this.clothe24.push({
-                cid: res.data.list[i].cid,
-                cpid: res.data.list[i].cpid,
-                cpi: res.data.list[i].cpi,
-                cpr: res.data.list[i].cpr,
-                cn: res.data.list[i].cn,
-                cde: res.data.list[i].cde,
-                cnum: res.data.list[i].cnum
+                cid: res.data.result[i].cid,
+                cpid: res.data.result[i].cpid,
+                cpi: res.data.result[i].cpi,
+                cpr: res.data.result[i].cpr,
+                cn: res.data.result[i].cn,
+                cde: res.data.result[i].cde,
+                cnum: res.data.result[i].cnum
               })
             }
           }).catch(err=>{

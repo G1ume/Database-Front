@@ -44,7 +44,7 @@ export default {
       }
       this.$axios({
         method: 'post',
-        url: '/register/',
+        url: '/register',
         data: qs.stringify({
           nuid: this.uid,
           npwd: this.pwd,
