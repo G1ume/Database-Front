@@ -16,6 +16,7 @@ import myorder from "@/components/order/myorder.vue";
 import message from "@/components/message/message.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import debug from "@/debug.vue";
+import sampleOrder from "@/components/order/sampleOrder.vue";
 
 
 const routerHistory = createWebHistory()
@@ -116,11 +117,11 @@ const routes = [{
         }
     },
     {
-        path: '/myorder',
+        path: '/account/order',
         name: 'myorder',
         component: myorder,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -130,7 +131,15 @@ const routes = [{
         meta: {
             keepalive: true
         }
-    }
+    },
+    {
+        path: '/account/order/sample',
+        name: 'sampleOrder',
+        component: sampleOrder,
+        meta: {
+            keepalive: false
+        }
+    },
 ]
 
 const router = createRouter({

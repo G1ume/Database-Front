@@ -41,7 +41,7 @@
             <div style="padding: 14px">
               <span>{{ clothe24[index + headIndex - 1].cn }}</span>
               <div class="bottom">
-                <el-button text class="button" @click="singleobj(index)">查看详情{{ index }}</el-button>
+                <el-button text class="button" @click="singleobj(index+headIndex-1)">查看详情{{ index }}</el-button>
               </div>
             </div>
           </el-card>

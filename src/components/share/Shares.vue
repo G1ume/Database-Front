@@ -71,7 +71,7 @@ export default {
       shareList: [],
       pageNum: 0,
       pageSize: store.state.pagecfg.pagesize,
-      pageElemNum: store.state.pagecfg.pagesize,
+      pageElemNum: 0,
       headIndex: 0,
     }
   },
