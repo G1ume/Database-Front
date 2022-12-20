@@ -90,30 +90,25 @@ export default {
       let cco_list = []
       // console.log("begin get ")
       // console.log(this.checkTypeList)
-      let cco1='0123456'
-      if(this.checkTypeList.length===0){
-        cco1="0123456"
-      }else {
-        for (let index = 0; index < this.checkTypeList.length; index++) {
-          let item = this.checkTypeList[index];
-          cco_list.push(item)
-          //dubug使用，正式的使用可以直接发送 checkTypeList到后端
-        }
-        cco1 = cco_list.join("")
+      for (let index = 0; index < this.checkTypeList.length; index++) {
+        let item = this.checkTypeList[index];
+        cco_list.push(item)
+        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
-      console.log("cco1=",cco1)
-      this.clothe24 = []
-      for (let i = 0; i < this.clist.length; i++) {
-        let m = {}
-        m.cid = "00" + i
-        m.cpid = "10" + i
-        m.cpr = i
-        m.cn = "衣服" + i
-        m.cde = "这是衣服" + i
-        m.cnum = i * 100
-        m.cpi = this.clist.at(i)
-        this.clothe24.push(m)
-      }
+      let cco1 = cco_list.join("")
+      console.log("cco1=", cco1)
+      // this.clothe24 = []
+      // for (let i = 0; i < this.clist.length; i++) {
+      //   let m = {}
+      //   m.cid = "00" + i
+      //   m.cpid = "10" + i
+      //   m.cpr = i
+      //   m.cn = "衣服" + i
+      //   m.cde = "这是衣服" + i
+      //   m.cnum = i * 100
+      //   m.cpi = this.clist.at(i)
+      //   this.clothe24.push(m)
+      // }
 
       this.$axios({
         method: 'post',
@@ -137,8 +132,8 @@ export default {
                 cnum: res.data.result[i].cnum
               })
             }
-          }).catch(err=>{
-            console.log(err)
+          }).catch(err => {
+        console.log(err)
         ElMessage.error("获取衣服列表失败")
       })
       this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize

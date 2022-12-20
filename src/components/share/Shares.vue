@@ -80,8 +80,8 @@ export default {
     }
   },
   created() {
-    this.demo()
-    //this.query()
+    //this.demo()
+    this.query()
   },
   methods: {
     demo() {
@@ -102,18 +102,13 @@ export default {
     },
     async query() {
       let sco_list = []
-      let scco1 = '0123456'
-      console.log("checkType",this.checkTypeList)
-      if (this.checkTypeList.length === 0) {
-        scco1 = '0123456'
-      } else {
-        for (let index = 0; index < this.checkTypeList.length; index++) {
-          let item = this.checkTypeList[index];
-          sco_list.push(item)
-          //dubug使用，正式的使用可以直接发送 checkTypeList到后端
-        }
-        scco1 = sco_list.join("")
+      console.log("checkType", this.checkTypeList)
+      for (let index = 0; index < this.checkTypeList.length; index++) {
+        let item = this.checkTypeList[index];
+        sco_list.push(item)
+        //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
+      let scco1 = sco_list.join("")
 
       this.$axios({
         method: 'post',
@@ -167,7 +162,7 @@ export default {
         ElMessage.error("举报失败，检查连接")
       })
     },
-    created(){
+    created() {
       this.query()
     }
   }
