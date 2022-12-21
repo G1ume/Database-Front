@@ -24,18 +24,6 @@
 
 </template>
 
-<script setup>
-import {useRoute} from "vue-router";
-const route = useRoute()
-function t(){
-  console.log("hello world")
-  console.log(route.query)
-}
-
-console.log(route)
-console.log(route.query)
-//console.log(route.query.id)
-</script>
 <script>
 
 import store from "@/store";

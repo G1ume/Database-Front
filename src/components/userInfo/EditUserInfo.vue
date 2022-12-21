@@ -11,7 +11,7 @@
         <el-row>
           <el-col :span="8"/>
           <el-col :span="8">
-            <el-card shadow="never">
+            <el-card shadow="never" v-show="!isAdmin()">
               <el-avatar :size="150" :src="getAvatar()" fit="cover"/>
               <p/>
               <el-button type="primary" @click="avatarLoading = true" :loading="avatarLoading" text>
@@ -35,8 +35,9 @@
         <el-row>
           <el-col :span="8"/>
           <el-col :span="8">
-            <el-card shadow="never">
-
+            <el-card shadow="never" v-show="!isAdmin()">
+              <span style="font-weight: bold;font-size: large">{{ getName() }}</span>
+              <p/>
               <el-input placeholder="请输入新昵称" v-model="nun" clearable class="input_style"></el-input>
               <p/>
               <el-button type="primary" @click="changeName" :loading="nameLoading" text>
@@ -51,9 +52,7 @@
         </el-row>
         <h6/>
         <el-row>
-          <el-col :span="8">
-
-          </el-col>
+          <el-col :span="8"/>
           <el-col :span="8">
             <el-card shadow="never">
               <el-input v-model="oldpwd" placeholder="请输入原密码" show-password class="input_style"></el-input>
@@ -70,11 +69,8 @@
               </el-button>
             </el-card>
           </el-col>
-          <el-col :span="8">
-          </el-col>
+          <el-col :span="8"/>
         </el-row>
-
-
       </div>
       <el-divider/>
     </el-main>
@@ -103,8 +99,11 @@ export default {
     }
   },
   methods: {
-    goBack() {
-      this.$router.go(-1)
+    isAdmin(){
+      return store.state.logInfo.admin
+    },
+    getName() {
+      return store.state.logInfo.user_name
     },
     getAvatar() {
       return store.state.logInfo.user_avatar
@@ -153,6 +152,17 @@ export default {
           )
     },
     changeName() {
+      if (this.nun.length === 0) {
+        return
+      }
+      if (this.nun.length > 16) {
+        ElMessage.error("修改昵称失败:昵称过长！")
+        return
+      }
+      if (this.nun === store.state.logInfo.user_name) {
+        ElMessage.error("修改昵称失败:新旧昵称相同！")
+        return;
+      }
       this.nameLoading = true
       this.$axios({
         method: 'post',
@@ -168,7 +178,7 @@ export default {
             this.nameLoading = false
             switch (res.data.result) {
               case 1: {
-                store.commit('editUserName',this.nun)
+                store.commit('editUserName', this.nun)
                 ElMessage.success("昵称修改成功！")
                 break;
               }

@@ -109,7 +109,7 @@ export default {
       return !store.state.logInfo.access_token
     },
     handleSelect(key, keyPath) {
-      console.log(key, keyPath)
+
     },
     isAdmin(){
       return store.state.logInfo.admin

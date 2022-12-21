@@ -93,7 +93,7 @@ export default {
                   store.commit("logIn", {
                     userId: res.data.uid,
                     userName: res.data.un,
-                    userAvatar: res.data.up,
+                    userAvatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
                     isAdmin: true
                   })
                   this.$router.push({
