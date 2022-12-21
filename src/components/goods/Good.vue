@@ -6,7 +6,6 @@
       </h1>
     </el-header>
     <el-main>
-
       <div>
         <el-checkbox-group v-model="checkTypeList" size="large">
           <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
@@ -71,6 +70,7 @@ import {ElMessage} from "element-plus";
 import { onMounted } from 'vue'
 
 export default {
+  name:'Good',
     created(){
       // ...
       console.log("init")

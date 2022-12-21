@@ -68,6 +68,7 @@ import qs from "qs";
 import {ElMessage} from "element-plus";
 
 export default {
+  name:'shares',
   data() {
     return {
       labelList: store.state.clothTypeList,
