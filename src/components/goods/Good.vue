@@ -71,14 +71,13 @@ import {ElMessage} from "element-plus";
 import { onMounted } from 'vue'
 
 export default {
-  setup() {
-    onMounted(() => {
+
+    created(){
       // ...
       this.getCloth()
       console.log("num in created", this.clothe24.length)
       console.log("created end")
-    })
-  },
+    },
   data() {
     return {
       clist: store.state.testClothList,

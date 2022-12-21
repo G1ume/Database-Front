@@ -63,9 +63,6 @@ export default {
       headIndex: 0,
     }
   },
-  created() {
-    this.query()
-  },
   methods: {
     query() {
       this.$axios({
@@ -115,6 +112,7 @@ export default {
         console.log(err)
         ElMessage.error("驳回处理失败")
       })
+      this.query()
     },
     agree(index) {
       this.$axios({
@@ -128,7 +126,9 @@ export default {
         console.log(err)
         ElMessage.error("接受处理失败")
       })
+      this.query()
     }
+
   },
   created() {
     this.query()
