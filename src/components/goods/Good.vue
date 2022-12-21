@@ -74,7 +74,7 @@ export default {
 
     created(){
       // ...
-      this.getCloth()
+      this.init()
       console.log("num in created", this.clothe24.length)
       console.log("created end")
     },
@@ -94,6 +94,37 @@ export default {
   }
   ,
   methods: {
+      init(){
+        console.log("init")
+        this.$axios({
+          method: 'post',
+          url: '/find_cco_cloths',
+          data: qs.stringify({
+            cco: "",
+            uid: store.state.logInfo.user_id
+          }),
+          timeout: 1000,
+        })
+            .then(res => {
+              this.clothe24 = []
+              for (let i = 0; i < res.data.result.length; i++) {
+                this.clothe24.push({
+                  cid: res.data.result[i].cid,
+                  cpid: res.data.result[i].cpid,
+                  cpi: res.data.result[i].cpi,
+                  cpr: res.data.result[i].cpr,
+                  cn: res.data.result[i].cn,
+                  cde: res.data.result[i].cde,
+                  cnum: res.data.result[i].cnum
+                })
+                console.log(this.clothe24.at(i).cid)
+              }
+            }).catch(err => {
+          console.log(err)
+          ElMessage.error("获取衣服列表失败")
+        })
+        this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
+      },
      getCloth() {
       let cco_list = []
       // console.log("begin get ")
@@ -133,6 +164,7 @@ export default {
       })
       this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
     },
+
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
@@ -179,8 +211,4 @@ export default {
   min-height: auto;
 }
 
-/*.image {*/
-/*  width: 100%;*/
-/*  display: block;*/
-/*}*/
 </style>
