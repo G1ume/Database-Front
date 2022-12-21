@@ -86,6 +86,8 @@ export default {
   }
   ,
   methods: {
+
+
      getCloth() {
       let cco_list = []
       // console.log("begin get ")
@@ -165,11 +167,11 @@ export default {
       )
     }
   },
-  created() {
+  mounted(){
     this.getCloth()
     console.log("num in created", this.clothe24.length)
     console.log("created end")
-  }
+  },
 }
 </script>
 <style>
