@@ -20,7 +20,9 @@
                 :src="shareList[index-1+headIndex].spi"
             ></el-image>
             <div style="padding: 14px">
-              <span>Share Body {{ shareList[index - 1 + headIndex] }}</span>
+              <span> 标题{{ shareList[index - 1 + headIndex].she }}</span>
+              <span> 内容{{ shareList[index - 1 + headIndex].sde }}</span>
+              <span>对应商品id: {{ shareList[index - 1 + headIndex].scid }}</span>
               <div class="bottom">
                 <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
                 <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
@@ -62,9 +64,6 @@ export default {
       pageElemNum: 0,
       headIndex: 0,
     }
-  },
-  created() {
-    this.query()
   },
   methods: {
     query() {
@@ -115,6 +114,7 @@ export default {
         console.log(err)
         ElMessage.error("驳回处理失败")
       })
+      this.query()
     },
     agree(index) {
       this.$axios({
@@ -128,7 +128,9 @@ export default {
         console.log(err)
         ElMessage.error("接受处理失败")
       })
+      this.query()
     }
+
   },
   created() {
     this.query()

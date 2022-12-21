@@ -6,7 +6,6 @@
       </h1>
     </el-header>
     <el-main>
-
       <div>
         <el-checkbox-group v-model="checkTypeList" size="large">
           <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
@@ -68,8 +67,45 @@
 import qs from "qs";
 import store from "@/store";
 import {ElMessage} from "element-plus";
+import { onMounted } from 'vue'
 
 export default {
+  name:'Good',
+    created(){
+      // ...
+      console.log("init")
+      this.$axios({
+        method: 'post',
+        url: '/find_cco_cloths',
+        data: qs.stringify({
+          cco: "",
+          uid: store.state.logInfo.user_id
+        }),
+        timeout: 1000,
+      })
+          .then(res => {
+            this.clothe24 = []
+            for (let i = 0; i < res.data.result.length; i++) {
+              this.clothe24.push({
+                cid: res.data.result[i].cid,
+                cpid: res.data.result[i].cpid,
+                cpi: res.data.result[i].cpi,
+                cpr: res.data.result[i].cpr,
+                cn: res.data.result[i].cn,
+                cde: res.data.result[i].cde,
+                cnum: res.data.result[i].cnum
+              })
+              console.log(this.clothe24.at(i).cid)
+            }
+          }).catch(err => {
+        console.log(err)
+        ElMessage.error("获取衣服列表失败")
+      })
+      this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
+
+      console.log("num in created", this.clothe24.length)
+      console.log("created end")
+    },
   data() {
     return {
       clist: store.state.testClothList,
@@ -86,7 +122,38 @@ export default {
   }
   ,
   methods: {
-    async getCloth() {
+      init(){
+        console.log("init")
+        this.$axios({
+          method: 'post',
+          url: '/find_cco_cloths',
+          data: qs.stringify({
+            cco: "",
+            uid: store.state.logInfo.user_id
+          }),
+          timeout: 1000,
+        })
+            .then(res => {
+              this.clothe24 = []
+              for (let i = 0; i < res.data.result.length; i++) {
+                this.clothe24.push({
+                  cid: res.data.result[i].cid,
+                  cpid: res.data.result[i].cpid,
+                  cpi: res.data.result[i].cpi,
+                  cpr: res.data.result[i].cpr,
+                  cn: res.data.result[i].cn,
+                  cde: res.data.result[i].cde,
+                  cnum: res.data.result[i].cnum
+                })
+                console.log(this.clothe24.at(i).cid)
+              }
+            }).catch(err => {
+          console.log(err)
+          ElMessage.error("获取衣服列表失败")
+        })
+        this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
+      },
+     getCloth() {
       let cco_list = []
       // console.log("begin get ")
       // console.log(this.checkTypeList)
@@ -97,19 +164,6 @@ export default {
       }
       let cco1 = cco_list.join("")
       console.log("cco1=", cco1)
-      // this.clothe24 = []
-      // for (let i = 0; i < this.clist.length; i++) {
-      //   let m = {}
-      //   m.cid = "00" + i
-      //   m.cpid = "10" + i
-      //   m.cpr = i
-      //   m.cn = "衣服" + i
-      //   m.cde = "这是衣服" + i
-      //   m.cnum = i * 100
-      //   m.cpi = this.clist.at(i)
-      //   this.clothe24.push(m)
-      // }
-
       this.$axios({
         method: 'post',
         url: '/find_cco_cloths',
@@ -138,6 +192,7 @@ export default {
       })
       this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
     },
+
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
@@ -165,11 +220,7 @@ export default {
       )
     }
   },
-  created() {
-    this.getCloth()
-    console.log("num in created", this.clothe24.length)
-    console.log("created end")
-  }
+
 }
 </script>
 <style>
@@ -188,8 +239,4 @@ export default {
   min-height: auto;
 }
 
-/*.image {*/
-/*  width: 100%;*/
-/*  display: block;*/
-/*}*/
 </style>

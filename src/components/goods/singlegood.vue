@@ -36,7 +36,7 @@
 
     </el-main>
     <el-footer>
-      <el-button type="danger" round @click="report">举报</el-button>
+
       <el-button type="success" round @click="buy">购买</el-button>
     </el-footer>
 
