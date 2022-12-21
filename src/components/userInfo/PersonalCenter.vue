@@ -6,18 +6,26 @@
       </span>
     </el-header>
     <el-main>
-      <el-card :body-style="{ padding: '0px' }" shadow="hover">
-        <h2/>
-        <el-avatar :size="150" :src="getAvatar()" fit="cover"/>
-        <div style="padding: 14px">
-          <span style="font-size: larger">{{ getName() }}</span>
-          <div/>
-          <span style="font-size: small" >uid:{{ getId() }}</span>
-          <div>
-            <el-button text @click="toEditUserInfo" >修改个人信息</el-button>
-          </div>
-        </div>
-      </el-card>
+      <el-row>
+        <el-col :span="6"/>
+        <el-col :span="12">
+          <el-card :body-style="{ padding: '0px' }" shadow="hover">
+            <h2/>
+            <el-avatar :size="150" :src="getAvatar()" fit="cover"/>
+            <div style="padding: 14px">
+              <span style="font-size: larger;font-weight: bolder">{{ getName() }}</span>
+              <h3/>
+              <div/>
+              <span style="font-size:15px">Email:{{ getId() }}</span>
+              <h3/>
+              <div>
+                <el-button text @click="toEditUserInfo">修改个人信息</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="6"/>
+      </el-row>
       <h6></h6>
 
       <div class="">
@@ -75,35 +83,35 @@ export default {
   name: "PersonalCenter",
   data() {
     return {
-      isuser:!store.state.logInfo.admin,
+      isuser: !store.state.logInfo.admin,
       name: '用户昵称',
       userId: 0,
       defaultSrc: "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
-      dialogVisible:false,
+      dialogVisible: false,
     }
   },
   created() {
 
   },
   methods: {
-    Upingshare(){
+    Upingshare() {
       this.$router.push({
-        name:"upingshare"
+        name: "upingshare"
       })
     },
-    toUpshare(){
+    toUpshare() {
       this.$router.push({
-        name:"upshare"
+        name: "upshare"
       })
     },
-    Upinggood(){
+    Upinggood() {
       this.$router.push({
-        name:"upinggood"
+        name: "upinggood"
       })
     },
-    toUpgood(){
+    toUpgood() {
       this.$router.push({
-        name:"upgood"
+        name: "upgood"
       })
     },
     toEditUserInfo() {
@@ -113,24 +121,24 @@ export default {
     },
     toIndent() {
       this.$router.push({
-        name:"myorder"
+        name: "myorder"
       })
     },
     toOffLine() {
       store.commit("logOut")
       this.dialogVisible = false
-      this.$router.push({name:'Main'})
+      this.$router.push({name: 'Main'})
     },
-    getAvatar(){
+    getAvatar() {
       return store.state.logInfo.user_avatar
     },
-    getName(){
+    getName() {
       return store.state.logInfo.user_name
     },
-    getId(){
+    getId() {
       return store.state.logInfo.user_id
     },
-    online(){
+    online() {
       return store.state.logInfo.access_token
     }
   }
