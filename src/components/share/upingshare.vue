@@ -20,9 +20,9 @@
                 :src="shareList[index-1+headIndex].spi"
             ></el-image>
             <div style="padding: 14px">
-              <span> {{ shareList[index - 1 + headIndex].she }}</span>
-              <span> {{ shareList[index - 1 + headIndex].sde }}</span>
-              <span>对应商品id: {{ shareList[index - 1 + headIndex].cid }}</span>
+              <span> 标题{{ shareList[index - 1 + headIndex].she }}</span>
+              <span> 内容{{ shareList[index - 1 + headIndex].sde }}</span>
+              <span>对应商品id: {{ shareList[index - 1 + headIndex].scid }}</span>
               <div class="bottom">
                 <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
                 <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
