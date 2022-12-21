@@ -156,7 +156,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
-
+            ElMessage.success("已举报")
           }).catch(err => {
         console.log(err)
         ElMessage.error("举报失败，检查连接")
