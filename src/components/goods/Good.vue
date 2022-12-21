@@ -86,7 +86,7 @@ export default {
   }
   ,
   methods: {
-    async getCloth() {
+     getCloth() {
       let cco_list = []
       // console.log("begin get ")
       // console.log(this.checkTypeList)
