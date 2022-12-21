@@ -68,8 +68,17 @@
 import qs from "qs";
 import store from "@/store";
 import {ElMessage} from "element-plus";
+import { onMounted } from 'vue'
 
 export default {
+  setup() {
+    onMounted(() => {
+      // ...
+      this.getCloth()
+      console.log("num in created", this.clothe24.length)
+      console.log("created end")
+    })
+  },
   data() {
     return {
       clist: store.state.testClothList,
@@ -86,8 +95,6 @@ export default {
   }
   ,
   methods: {
-
-
      getCloth() {
       let cco_list = []
       // console.log("begin get ")
@@ -99,19 +106,6 @@ export default {
       }
       let cco1 = cco_list.join("")
       console.log("cco1=", cco1)
-      // this.clothe24 = []
-      // for (let i = 0; i < this.clist.length; i++) {
-      //   let m = {}
-      //   m.cid = "00" + i
-      //   m.cpid = "10" + i
-      //   m.cpr = i
-      //   m.cn = "衣服" + i
-      //   m.cde = "这是衣服" + i
-      //   m.cnum = i * 100
-      //   m.cpi = this.clist.at(i)
-      //   this.clothe24.push(m)
-      // }
-
       this.$axios({
         method: 'post',
         url: '/find_cco_cloths',
@@ -167,11 +161,7 @@ export default {
       )
     }
   },
-  mounted(){
-    this.getCloth()
-    console.log("num in created", this.clothe24.length)
-    console.log("created end")
-  },
+
 }
 </script>
 <style>
