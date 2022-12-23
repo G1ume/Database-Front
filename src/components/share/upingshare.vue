@@ -1,8 +1,11 @@
 <template>
   <el-container>
     <el-header>
-      <span style="font-size: 30px;font-weight: bold">
+      <span style="font-size: 30px;font-weight: bold" v-show="!isadmin">
         我的分享
+      </span>
+      <span style="font-size: 30px;font-weight: bold" v-show="isadmin">
+        被举报的分享
       </span>
     </el-header>
     <el-main>
@@ -27,7 +30,13 @@
           </el-table-column>
           <el-table-column prop="" label="操作">
             <template #default="scope">
-              <el-button @click="deleteShare(shareList[scope.$index])" type="danger">删除</el-button>
+              <el-button v-if="!isadmin" @click="deleteShare(shareList[scope.$index])" type="danger">删除</el-button>
+              <div class="bottom">
+                <span>
+                  <el-button v-if="isadmin" @click="agree(scope.$index)" type="success">接受</el-button>
+                  <el-button v-if="isadmin" @click="reject(scope.$index)" type="danger">驳回</el-button>
+                </span>
+              </div>
             </template>
           </el-table-column>
         </el-table>
@@ -44,8 +53,12 @@
             @current-change="changePage"
         />
       </div>
-      <el-affix position="bottom" :offset="20">
-        <el-button @click="toUpshare" type="primary" circle><el-icon><Plus/></el-icon></el-button>
+      <el-affix position="bottom" :offset="20" v-if="!isadmin">
+        <el-button @click="toUpshare" type="primary" circle>
+          <el-icon>
+            <Plus/>
+          </el-icon>
+        </el-button>
       </el-affix>
     </el-footer>
   </el-container>
@@ -69,9 +82,9 @@ export default {
     }
   },
   methods: {
-    toUpshare(){
+    toUpshare() {
       this.$router.push({
-        name:"upshare"
+        name: "upshare"
       })
     },
     query() {
@@ -110,23 +123,23 @@ export default {
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
     },
-    deleteShare(share){
+    deleteShare(share) {
       this.$axios({
-        method:'post',
-        url:'/del_share',
-        data:qs.stringify({
-          uid:store.state.logInfo.user_id,
-          sid:share.sid
+        method: 'post',
+        url: '/del_share',
+        data: qs.stringify({
+          uid: store.state.logInfo.user_id,
+          sid: share.sid
         })
-      }).then(res=>{
+      }).then(res => {
         console.log(res)
-        if(res.data.result===1){
+        if (res.data.result === 1) {
           ElMessage.success("删除成功！")
           this.query()
-        }else {
+        } else {
           ElMessage.error("删除失败！")
         }
-      }).catch(err=>{
+      }).catch(err => {
         console.log(err)
         ElMessage.error("服务器响应失败！")
       })

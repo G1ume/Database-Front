@@ -8,7 +8,8 @@
           :src="getAvatar()"
       />
       <span class="text-large font-600 mr-3"> 欢迎回来 </span>
-      <el-tag>{{ getName() }}</el-tag>
+      <el-tag v-if="isAdmin()" type="danger">{{ getName() }}</el-tag>
+      <el-tag v-if="!isAdmin()" >{{ getName() }}</el-tag>
     </div>
   </template></el-page-header>
 </template>
@@ -19,6 +20,9 @@ import store from "@/store";
 export default {
   name: "PageHeader",
   methods:{
+    isAdmin(){
+      return store.state.logInfo.admin
+    },
     goBack(){
       this.$router.go(-1)
     },
