@@ -34,6 +34,9 @@
         </el-table>
       </el-card>
     </el-main>
+    <el-affix position="bottom" :offset="20">
+      <el-button @click="toUpgood" type="primary" circle><el-icon><Plus/></el-icon></el-button>
+    </el-affix>
   </el-container>
 </template>
 <script>
@@ -55,6 +58,11 @@ export default {
     }
   },
   methods: {
+    toUpgood(){
+      this.$router.push({
+        name:"upgood"
+      })
+    },
     deleteCloth(cloth){
       this.$axios({
         method:'post',

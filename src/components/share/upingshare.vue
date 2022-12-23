@@ -44,6 +44,9 @@
             @current-change="changePage"
         />
       </div>
+      <el-affix position="bottom" :offset="20">
+        <el-button @click="toUpshare" type="primary" circle><el-icon><Plus/></el-icon></el-button>
+      </el-affix>
     </el-footer>
   </el-container>
 </template>
@@ -66,6 +69,11 @@ export default {
     }
   },
   methods: {
+    toUpshare(){
+      this.$router.push({
+        name:"upshare"
+      })
+    },
     query() {
       this.$axios({
         method: 'post',
