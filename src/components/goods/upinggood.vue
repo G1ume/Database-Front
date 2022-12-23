@@ -6,50 +6,40 @@
       </span>
     </el-header>
     <el-main>
-      <el-row type="flex">
-        <el-col
-            v-for="(item, index) in clothe24"
-            :key="index"
-            :span="24"
-            :offset="0"
-        >
-          <el-card :body-style="{ padding: '2px' }">
-            <el-image
-                style="width: 150px ;height: 150px"
-                fit="cover"
-                :src="item.cpi"
-            ></el-image>
-              <div style="padding: 14px">
-                <span>衣服id:{{ item.cid }}</span>
-                <span>衣服名称:{{ item.cn }}</span>
-                <span>衣服价格{{ item.cpr }}元</span>
-                <span>描述:{{ item.cde }}</span>
-                <span>剩余{{ item.cnum }}件</span>
-                <div class="bottom">
-                </div>
-              </div>
-          </el-card>
-          <h6></h6>
-        </el-col>
-      </el-row>
+      <el-card>
+        <el-table :data="clothe24" :border="true">
+          <el-table-column prop="pic" label="缩略图">
+            <template #default="scope">
+              <el-image
+                  style="width: 50px ;height: 50px"
+                  fit="cover"
+                  :src="clothe24[scope.$index].cpi"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column prop="cn" label="商品名称">
+          </el-table-column>
+          <el-table-column prop="cde" label="商品简介">
+
+          </el-table-column>
+          <el-table-column prop="cpr" label="价格(￥)/元">
+          </el-table-column>
+          <el-table-column prop="cnum" label="剩余数量">
+          </el-table-column>
+          <el-table-column prop="" label="操作">
+            <template #default="scope">
+              <el-button @click="deleteCloth(clothe24[scope.$index])" type="danger">下架</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-card>
     </el-main>
-    <el-footer>
-      <div class="pageChange">
-        <el-pagination
-            v-model:current-page="pageNum"
-            layout="prev, pager, next"
-            :hide-on-single-page=true
-            :total=clothe24.length
-            :page-size=pageSize
-            @current-change="changePage"
-        />
-      </div>
-    </el-footer>
   </el-container>
 </template>
 <script>
 import qs from "qs";
 import store from "@/store";
+import {ElMessage} from "element-plus";
 
 export default {
   data() {
@@ -65,6 +55,27 @@ export default {
     }
   },
   methods: {
+    deleteCloth(cloth){
+      this.$axios({
+        method:'post',
+        url:'/del_clothing',
+        data:qs.stringify({
+          uid:store.state.logInfo.user_id,
+          cid:cloth.cid
+        })
+      }).then(res=>{
+        console.log(res)
+        if(res.data.result===1){
+          ElMessage.success("下架成功！")
+          this.query()
+        }else {
+          ElMessage.error("下架失败！")
+        }
+      }).catch(err=>{
+        console.log(err)
+        ElMessage.error("服务器响应失败！")
+      })
+    },
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize

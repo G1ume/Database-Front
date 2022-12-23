@@ -2,8 +2,9 @@
 
   <div class="main">
 
-    <h1>{{ msg2 }} {{ msg }}</h1>
-    <h6 v-show="online()">用户：{{getName()}}</h6>
+    <h1>{{ msg }}</h1>
+    <h6 v-show="online()">您好：{{getName()}}</h6>
+    <el-divider/>
 <!--    <el-button @click="fn">ShowParams</el-button>-->
 <!--    <el-button @click="t">ShowRoute</el-button>-->
 <!--    <el-button @click="toLogin">login</el-button>-->
@@ -32,7 +33,7 @@ export default {
   data() {
     return {
       msg2: this.$route.query.message,
-      msg: '欢迎来到xxx ',
+      msg: '欢迎来到OurCloth ',
       imgs:[
         "https://tse1-mm.cn.bing.net/th/id/OIP-C.UR-SLHIN9eLOjyNhKCGb4QHaLW?pid=ImgDet&rs=1",
         "https://img.zcool.cn/community/01eba55b9e894da8012099c8f8841b.jpg@1280w_1l_2o_100sh.jpg",

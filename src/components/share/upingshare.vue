@@ -6,32 +6,32 @@
       </span>
     </el-header>
     <el-main>
-      <el-row type="flex">
-        <el-col
-            v-for="index in pageElemNum"
-            :key="index"
-            :span="24"
-            :offset="0"
-        >
-          <el-card :body-style="{ padding: '2px' }">
-            <el-image
-                style="width: 150px ;height: 150px"
-                fit="cover"
-                :src="shareList[index-1+headIndex].spi"
-            ></el-image>
-            <div style="padding: 14px">
-              <span> 标题{{ shareList[index - 1 + headIndex].she }}</span>
-              <span> 内容{{ shareList[index - 1 + headIndex].sde }}</span>
-              <span>对应商品id: {{ shareList[index - 1 + headIndex].scid }}</span>
-              <div class="bottom">
-                <el-button v-if="isadmin" @click="reject(index)">驳回</el-button>
-                <el-button v-if="isadmin" @click="agree(index)">接受</el-button>
-              </div>
-            </div>
-          </el-card>
-          <h6></h6>
-        </el-col>
-      </el-row>
+      <el-card>
+        <el-table :data="shareList" :border="true">
+          <el-table-column prop="pic" label="缩略图">
+            <template #default="scope">
+              <el-image
+                  style="width: 50px ;height: 50px"
+                  fit="cover"
+                  :src="shareList[scope.$index].spi"
+              />
+            </template>
+          </el-table-column>
+          <el-table-column prop="she" label="分享标题">
+          </el-table-column>
+          <el-table-column prop="sde" label="分享内容">
+
+          </el-table-column>
+          <el-table-column prop="sti" label="创建时间">
+
+          </el-table-column>
+          <el-table-column prop="" label="操作">
+            <template #default="scope">
+              <el-button @click="deleteShare(shareList[scope.$index])" type="danger">删除</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-card>
     </el-main>
     <el-footer>
       <div class="pageChange">
@@ -101,6 +101,27 @@ export default {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.shareList.length ? this.shareList.length - this.headIndex : this.pageSize
+    },
+    deleteShare(share){
+      this.$axios({
+        method:'post',
+        url:'/del_share',
+        data:qs.stringify({
+          uid:store.state.logInfo.user_id,
+          sid:share.sid
+        })
+      }).then(res=>{
+        console.log(res)
+        if(res.data.result===1){
+          ElMessage.success("删除成功！")
+          this.query()
+        }else {
+          ElMessage.error("删除失败！")
+        }
+      }).catch(err=>{
+        console.log(err)
+        ElMessage.error("服务器响应失败！")
+      })
     },
     reject(index) {
       this.$axios({

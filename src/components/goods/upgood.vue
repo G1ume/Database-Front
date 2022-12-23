@@ -6,8 +6,6 @@
       </span>
     </el-header>
     <el-main>
-
-
       <el-card :body-style="{ padding: '0px' }" shadow="hover">
         <h6></h6>
         <div>
@@ -131,12 +129,12 @@ export default {
     }
   ,
     fail:function (){
-      ElMessage('上架失败,请重新检查您的提交.')
+      ElMessage.error('上架失败,请重新检查您的提交.')
     },
     success:function (){
-      ElMessage('上架成功,即将前往个人中心.')
+      ElMessage.success('上架成功!')
       this.$router.push({
-        name: "PersonalCenter",
+        name: "upinggood",
       });
     }
   }

@@ -13,8 +13,10 @@
             {{ type.label }}
           </el-checkbox-button>
         </el-checkbox-group>
+        <h1/>
+        <el-button @click="query" type="success">筛选</el-button>
       </div>
-      <el-button @click="query">筛选</el-button>
+
       <el-divider/>
       <el-row type="flex">
         <el-col
@@ -23,21 +25,20 @@
             :span="5.5"
             :offset="1"
         >
-
-
           <el-card :body-style="{ padding: '2px' }" shadow="hover">
             <template #header>
-              <span>{{ shareList[index - 1 + headIndex].she }}</span>
+              <span style="font-size: large;font-weight: bolder">{{ shareList[index - 1 + headIndex].she }}</span>
             </template>
             <el-image
-                style="width: 150px ;height: 150px"
+                style="width: 180px ;height: 180px"
                 fit="cover"
                 :src="shareList[index-1+headIndex].spi"
             >
-
             </el-image>
+            <el-divider/>
             <div style="padding: 14px">
               <span>{{ shareList[index - 1 + headIndex].sde }}</span>
+              <h1/>
               <div class="bottom">
                 <el-button type="danger" round @click="report(index)">举报</el-button>
               </div>
@@ -68,7 +69,7 @@ import qs from "qs";
 import {ElMessage} from "element-plus";
 
 export default {
-  name:'shares',
+  name: 'shares',
   data() {
     return {
       labelList: store.state.clothTypeList,
@@ -103,7 +104,6 @@ export default {
     },
     async query() {
       let sco_list = []
-      console.log("checkType", this.checkTypeList)
       for (let index = 0; index < this.checkTypeList.length; index++) {
         let item = this.checkTypeList[index];
         sco_list.push(item)

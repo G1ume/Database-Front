@@ -30,7 +30,6 @@
               class="input_style"
           />
         </div>
-
         <el-checkbox-group v-model="checkTypeList" size="large">
           <el-checkbox-button v-for="(type,index) in clothe1" :key="index" :label="type.value">
             {{ type.label }}
@@ -77,14 +76,14 @@ export default {
       let ccolist = []
       for (let index = 0; index < this.checkTypeList.length; index++) {
         let item = this.checkTypeList[index];
-        console.log("item", item);
+        //console.log("item", item);
         ccolist.push(item)
         //dubug使用，正式的使用可以直接发送 checkTypeList到后端
       }
       let cco1 = ccolist.join()
-      console.log("cco1", cco1)
+      //console.log("cco1", cco1)
       let aData = new Date();
-      console.log(this.s.spi)
+      //console.log(this.s.spi)
       this.$axios({
         method: 'post',
         url: '/regist_share',
@@ -129,12 +128,12 @@ export default {
     }
     ,
     fail: function () {
-      ElMessage('分享失败,请重新检查您的提交.')
+      ElMessage.error('分享失败,请重新检查您的提交.')
     },
     success: function () {
-      ElMessage('上架成功,即将前往个人中心.')
+      ElMessage.success('上传成功!')
       this.$router.push({
-        name: "PersonalCenter",
+        name: "upingshare",
       });
     }
   }

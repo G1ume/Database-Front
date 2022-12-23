@@ -12,7 +12,8 @@
             {{ type.label }}
           </el-checkbox-button>
         </el-checkbox-group>
-        <el-button @click="getCloth">查询</el-button>
+        <h1/>
+        <el-button @click="getCloth" type="success">查询</el-button>
       </div>
 
       <el-divider/>
@@ -25,7 +26,7 @@
         >
           <el-card :body-style="{ padding: '2px' }">
             <el-image
-                style="width: 150px ;height: 150px"
+                style="width: 200px ;height: 150px"
                 fit="cover"
                 :src="clothe24[index+headIndex-1].cpi"
             >
@@ -38,9 +39,14 @@
             <!--             alt=""-->
             <!--            />-->
             <div style="padding: 14px">
-              <span>{{ clothe24[index + headIndex - 1].cn }}</span>
+              <span style="font-weight: bold;font-size: large">{{ clothe24[index + headIndex - 1].cn }}</span>
+              <el-divider/>
+              <span>{{clothe24[index + headIndex - 1].cde}}</span>
+              <h1/>
+              <span>价格：<span style="color: crimson;">{{clothe24[index + headIndex - 1].cpr}}</span> /元</span>
               <div class="bottom">
-                <el-button text class="button" @click="singleobj(index+headIndex-1)">查看详情{{ index }}</el-button>
+                <el-button text class="button" @click="singleobj(index+headIndex-1)" type="warning">查看详情</el-button>
+
               </div>
             </div>
           </el-card>

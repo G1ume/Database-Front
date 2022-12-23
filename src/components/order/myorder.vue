@@ -7,7 +7,7 @@
     </el-header>
     <el-main>
       <el-card>
-        <el-table :data="myOrder">
+        <el-table :data="myOrder" :border="true">
           <el-table-column prop="pic" label="缩略图">
             <template #default="scope">
               <el-image
@@ -19,7 +19,7 @@
           </el-table-column>
           <el-table-column prop="cid" label="衣服id">
           </el-table-column>
-          <el-table-column prop="pri" label="订单总价">
+          <el-table-column prop="pri" label="订单总价(￥)/元">
 
           </el-table-column>
           <el-table-column prop="time" label="创建时间">

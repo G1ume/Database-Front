@@ -89,7 +89,7 @@ const routes = [{
         name: 'upgood',
         component: upgood,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -97,7 +97,7 @@ const routes = [{
         name: 'upinggood',
         component: upinggood,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -113,7 +113,7 @@ const routes = [{
         name: 'upshare',
         component: upshare,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
@@ -121,7 +121,7 @@ const routes = [{
         name: 'upingshare',
         component: upingshare,
         meta: {
-            keepalive: true
+            keepalive: false
         }
     },
     {
