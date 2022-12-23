@@ -34,7 +34,7 @@
               <el-select v-model="s.scid" class="m-2" placeholder="选择衣物" >
                 <el-option
                     v-for="item in clothe24"
-                    :key="item.cn"
+                    :key="item.cid"
                     :label="item.cn"
                     :value="item.cid"
                 />
