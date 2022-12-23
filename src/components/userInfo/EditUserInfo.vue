@@ -25,7 +25,14 @@
                   title="上传新头像！"
                   width="20%"
               >
-                <UploadAvatar/>
+                <el-upload
+                    action=""
+                    class="alignContainer"
+                    :http-request="upload"
+                    :show-file-list="false"
+                >
+                  <div class="avatar-update">选择文件</div>
+                </el-upload>
               </el-dialog>
             </el-card>
           </el-col>
@@ -99,6 +106,39 @@ export default {
     }
   },
   methods: {
+    upload(file) {
+      const formData = new FormData();
+      formData.append("image", file.file)
+      this.$axios.post('https://api.imgbb.com/1/upload', formData, {
+        params: {
+          key: "b3af80c7860822bee54611e28f1261e2",
+        }
+      }).then((res) => {
+        console.log(res.data.data.url);
+        this.$axios({
+          method:'post',
+          url:'/account/edit/pic',
+          data:qs.stringify({
+            uid:store.state.logInfo.user_id,
+            nup:res.data.data.url
+          })
+        }).then(result=>{
+          if(result.data.result===1){
+            store.commit('editUserAvatar',res.data.data.url)
+            ElMessage.success("修改头像成功")
+            this.avatarLoading=false
+          }else{
+            ElMessage.error("修改失败")
+          }
+        }).catch(err=>{
+          console.log(err)
+          ElMessage.error("服务器响应失败！")
+        })
+      }).catch(err => {
+        console.log(err)
+        ElMessage.error("图床服务器响应失败！")
+      })
+    },
     isAdmin(){
       return store.state.logInfo.admin
     },
@@ -107,10 +147,6 @@ export default {
     },
     getAvatar() {
       return store.state.logInfo.user_avatar
-    },
-    uploadAvatar() {
-      console.log("上传")
-      this.avatarLoading = false
     },
     changePwd() {
       this.pwdLoading = true
