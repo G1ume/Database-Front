@@ -67,45 +67,45 @@
 import qs from "qs";
 import store from "@/store";
 import {ElMessage} from "element-plus";
-import { onMounted } from 'vue'
+import {onMounted} from 'vue'
+import {waitFor} from "@babel/core/lib/gensync-utils/async";
 
 export default {
-  name:'Good',
-    created(){
-      // ...
-      console.log("init")
-      this.$axios({
-        method: 'post',
-        url: '/find_cco_cloths',
-        data: qs.stringify({
-          cco: "",
-          uid: store.state.logInfo.user_id
-        }),
-        timeout: 1000,
-      })
-          .then(res => {
-            this.clothe24 = []
-            for (let i = 0; i < res.data.result.length; i++) {
-              this.clothe24.push({
-                cid: res.data.result[i].cid,
-                cpid: res.data.result[i].cpid,
-                cpi: res.data.result[i].cpi,
-                cpr: res.data.result[i].cpr,
-                cn: res.data.result[i].cn,
-                cde: res.data.result[i].cde,
-                cnum: res.data.result[i].cnum
-              })
-              console.log(this.clothe24.at(i).cid)
-            }
-          }).catch(err => {
-        console.log(err)
-        ElMessage.error("获取衣服列表失败")
-      })
-      this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
+  name: 'Good',
+  created() {
+    this.$axios({
+      method: 'post',
+      url: '/find_cco_cloths',
+      data: qs.stringify({
+        cco: "",
+        uid: store.state.logInfo.user_id
+      }),
+      timeout: 1000,
+    })
+        .then(res => {
+          console.log("get response")
+          this.clothe24 = []
+          for (let i = 0; i < res.data.result.length; i++) {
+            this.clothe24.push({
+              cid: res.data.result[i].cid,
+              cpid: res.data.result[i].cpid,
+              cpi: res.data.result[i].cpi,
+              cpr: res.data.result[i].cpr,
+              cn: res.data.result[i].cn,
+              cde: res.data.result[i].cde,
+              cnum: res.data.result[i].cnum
+            })
+          }
+          this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
+        }).catch(err => {
+      console.log(err)
+      ElMessage.error("获取衣服列表失败")
+    })
 
-      console.log("num in created", this.clothe24.length)
-      console.log("created end")
-    },
+
+    console.log("num in created", this.clothe24.length, this.pageElemNum)
+    console.log("created end")
+  },
   data() {
     return {
       clist: store.state.testClothList,
@@ -122,38 +122,7 @@ export default {
   }
   ,
   methods: {
-      init(){
-        console.log("init")
-        this.$axios({
-          method: 'post',
-          url: '/find_cco_cloths',
-          data: qs.stringify({
-            cco: "",
-            uid: store.state.logInfo.user_id
-          }),
-          timeout: 1000,
-        })
-            .then(res => {
-              this.clothe24 = []
-              for (let i = 0; i < res.data.result.length; i++) {
-                this.clothe24.push({
-                  cid: res.data.result[i].cid,
-                  cpid: res.data.result[i].cpid,
-                  cpi: res.data.result[i].cpi,
-                  cpr: res.data.result[i].cpr,
-                  cn: res.data.result[i].cn,
-                  cde: res.data.result[i].cde,
-                  cnum: res.data.result[i].cnum
-                })
-                console.log(this.clothe24.at(i).cid)
-              }
-            }).catch(err => {
-          console.log(err)
-          ElMessage.error("获取衣服列表失败")
-        })
-        this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
-      },
-     getCloth() {
+    getCloth() {
       let cco_list = []
       // console.log("begin get ")
       // console.log(this.checkTypeList)
@@ -174,6 +143,7 @@ export default {
         timeout: 1000,
       })
           .then(res => {
+            console.log(res)
             this.clothe24 = []
             for (let i = 0; i < res.data.result.length; i++) {
               this.clothe24.push({
@@ -186,18 +156,20 @@ export default {
                 cnum: res.data.result[i].cnum
               })
             }
+            this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
           }).catch(err => {
         console.log(err)
         ElMessage.error("获取衣服列表失败")
       })
-      this.pageElemNum = this.pageSize > this.clothe24.length ? this.clothe24.length : this.pageSize
-    },
+    }
+    ,
 
     changePage(val) {
       this.pageNum = val
       this.headIndex = (this.pageNum - 1) * this.pageSize
       this.pageElemNum = (this.pageNum) * this.pageSize > this.clothe24.length ? this.clothe24.length - this.headIndex : this.pageSize
-    },
+    }
+    ,
     singleobj: function (index) {
       console.log("single begin")
       console.log(typeof index, index)

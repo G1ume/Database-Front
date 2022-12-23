@@ -135,11 +135,11 @@ export default {
                 spid: res.data.result[i].spid
               })
             }
+            this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
           }).catch(err => {
         console.log(err)
         ElMessage.error("获取分享列表失败")
       })
-      this.pageElemNum = this.pageSize > this.shareList.length ? this.shareList.length : this.pageSize
     },
     changePage(val) {
       this.pageNum = val
