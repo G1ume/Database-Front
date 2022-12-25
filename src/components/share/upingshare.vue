@@ -149,7 +149,7 @@ export default {
         method: 'post',
         url: '/reject',
         data: qs.stringify({
-          sid: this.shareList[index - 1 + this.headIndex].sid
+          sid: this.shareList[index].sid
         }),
         timeout: 1000,
       }).catch(err => {
@@ -163,7 +163,7 @@ export default {
         method: 'post',
         url: '/agree',
         data: qs.stringify({
-          sid: this.shareList[index - 1 + this.headIndex].sid
+          sid: this.shareList[index].sid
         }),
         timeout: 1000,
       }).catch(err => {

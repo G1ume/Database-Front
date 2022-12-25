@@ -84,8 +84,8 @@ export default {
               mtime:  res.data.result[i].mtime,
               mcontent:  res.data.result[i].mcontent,
               mst:  res.data.result[i].mst,
-              sid:  res.data.result[i].sid
-              // spic: res.data.list.at(i).spic,
+              sid:  res.data.result[i].sid,
+              spic: res.data.result[i].spic,
               // ppic: res.data.list.at(i).ppic
             })
           }
